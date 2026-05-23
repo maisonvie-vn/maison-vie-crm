@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Vie — Le Voyage | Fine Dining French Restaurant, Hanoi</title>
+<meta name="description" content="Maison Vie — Fine Dining French Restaurant at 28 Tang Bat Ho, Hanoi. 30 years of French culinary art, serving Hanoi since 2015. Reserve your table for Le Voyage.">
+<meta name="keywords" content="French restaurant Hanoi, fine dining Hanoi, nhà hàng Pháp Hà Nội, Maison Vie, French cuisine Hanoi">
+<meta property="og:title" content="Maison Vie — Le Voyage | Fine French Cuisine, Hanoi">
+<meta property="og:description" content="The essence of French cuisine in the heart of Hanoi. Reserve your table.">
+<meta property="og:type" content="restaurant">
+<meta property="og:image" content="https://www.maisonvie.vn/wp-content/uploads/2020/04/logo234.png">
+<meta property="og:url" content="https://www.maisonvie.vn/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Premium Multi-language Google Fonts with explicit diacritic character subsets support -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Schema.org Restaurant markup for SEO -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Maison Vie",
+  "image":"https://www.maisonvie.vn/wp-content/uploads/2020/04/logo234.png",
+  "servesCuisine":"French",
+  "priceRange":"$$$",
+  "telephone":"+84904150383",
+  "email":"info@maisonvie.vn",
+  "url":"https://www.maisonvie.vn/",
+  "address":{"@type":"PostalAddress","streetAddress":"28 Tang Bat Ho","addressLocality":"Hai Ba Trung","addressRegion":"Hanoi","addressCountry":"VN"},
+  "openingHours":"Mo-Su 10:00-22:00"
+}
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--gold:#C5A55A;--gold-light:#D4B96E;--gold-pale:#E8D9A8;
+--gold-gradient:linear-gradient(135deg, #E8D9A8 0%, #C5A55A 50%, #A38038 100%);
+--dark:#0A0A0A;--dark-warm:#121210;--dark-card:#161614;--dark-border:#2A2824;
+--cream:#F5F0E8;--cream-muted:#B8B0A0;--cream-dim:#8A8478;
+--wine:#7A3344;--wine-deep:#4A1E2C;
+--serif:'Cormorant Garamond',Georgia,Cambria,"Times New Roman",Times,serif;
+--sans:'Jost',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+--display:'Playfair Display',Georgia,Cambria,"Times New Roman",Times,serif;
+--jp:'Noto Serif JP',serif;
+}
+html{scroll-behavior:smooth;background:var(--dark)}
+body{font-family:var(--sans);color:var(--cream);background:var(--dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html[lang="ja"] .hero-title,html[lang="ja"] .section-heading,html[lang="ja"] .jp-serif{font-family:var(--jp)}
+img{max-width:100%;display:block}
+
+/* PRELOADER */
+.preloader{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s}
+.preloader.hide{opacity:0;visibility:hidden}
+.preloader svg{width:64px;height:64px;animation:pulse-gold 1.5s ease infinite}
+@keyframes pulse-gold{0%,100%{opacity:.3;transform:scale(.95)}50%{opacity:1;transform:scale(1)}}
+
+/* NAV WITH PREMIUM GLASSMORPHISM */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);background:rgba(10,10,10,0.62);border-bottom:1px solid rgba(197,165,90,0.12);transition:padding .4s,background .4s,border-color .4s}
+nav.scrolled{padding:.7rem 2.5rem;background:rgba(10,10,10,0.92);border-bottom:1px solid rgba(197,165,90,0.22)}
+.nav-brand{font-family:var(--serif);font-size:1.45rem;font-weight:400;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;text-decoration:none;transition:color .3s;display:flex;align-items:center}
+.nav-brand:hover{color:var(--gold-pale)}
+.nav-logo{height:38px;width:auto;display:block;transition:transform 0.3s, filter 0.3s}
+.nav-brand:hover .nav-logo{transform:scale(1.03);filter:brightness(1.1)}
+.nav-right{display:flex;align-items:center;gap:1.8rem}
+.nav-links{display:flex;gap:1.8rem;align-items:center}
+.nav-links a{font-family:var(--sans);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-muted);text-decoration:none;transition:color .3s;white-space:nowrap;position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.lang-switch{display:flex;gap:.2rem;align-items:center;border-left:1px solid var(--dark-border);padding-left:1rem}
+.lang-btn{background:none;border:none;color:var(--cream-dim);font-family:var(--sans);font-size:.72rem;letter-spacing:.05em;cursor:pointer;padding:.2rem .35rem;transition:color .3s}
+.lang-btn:hover{color:var(--gold-pale)}
+.lang-btn.active{color:var(--gold);font-weight:500}
+.nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:.55rem 1.5rem;font-family:var(--sans);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .4s;white-space:nowrap}
+.nav-cta:hover{background:var(--gold);color:var(--dark);box-shadow:0 0 15px rgba(197,165,90,0.3)}
+.nav-toggle{display:none;background:none;border:none;color:var(--gold);font-size:1.6rem;cursor:pointer;line-height:1}
+
+/* MOBILE MENU & SMOOTH TRANSITION */
+.mobile-menu{position:fixed;top:0;right:0;bottom:0;width:80%;max-width:320px;background:var(--dark-warm);z-index:200;padding:5rem 2rem 2rem;gap:1.5rem;border-left:1px solid var(--dark-border);transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);display:flex;flex-direction:column;box-shadow:-10px 0 30px rgba(0,0,0,0.5)}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{font-family:var(--serif);font-size:1.4rem;color:var(--cream);text-decoration:none;transition:color 0.3s;letter-spacing:0.05em}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-menu .mclose{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--gold);font-size:1.8rem;cursor:pointer;transition:transform 0.3s}
+.mobile-menu .mclose:hover{transform:rotate(90deg);color:var(--gold-light)}
+.menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:190;opacity:0;visibility:hidden;transition:opacity 0.4s, visibility 0.4s}
+.menu-overlay.open{opacity:1;visibility:visible}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(rgba(10,10,10,.65),rgba(10,10,10,.75)),url('https://www.maisonvie.vn/wp-content/uploads/2020/04/homeslide-4.jpg') center/cover;transform:scale(1.05)}
+.hero-tint{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,transparent 0%,rgba(10,10,10,.6) 100%)}
+.hero-content{position:relative;text-align:center;max-width:840px;padding:2rem;z-index:2}
+.hero-eyebrow{font-family:var(--sans);font-size:.76rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem;opacity:0;animation:fade-up .9s ease forwards .9s}
+.hero-eyebrow a{color:var(--gold);text-decoration:none}
+.hero-title{font-family:var(--display);font-size:clamp(3.2rem,8vw,6rem);font-weight:400;line-height:1.05;color:var(--cream);opacity:0;animation:fade-up .9s ease forwards 1.2s}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-family:var(--serif);font-size:clamp(1.15rem,2.2vw,1.6rem);font-weight:300;color:var(--cream-muted);line-height:1.55;margin-top:1.6rem;opacity:0;animation:fade-up .9s ease forwards 1.5s}
+.hero-divider{width:64px;height:1px;background:var(--gold);margin:2rem auto;opacity:0;animation:fade-up .9s ease forwards 1.7s}
+.hero-cta-row{display:flex;gap:1.1rem;justify-content:center;margin-top:2rem;opacity:0;animation:fade-up .9s ease forwards 1.9s;flex-wrap:wrap}
+@keyframes fade-up{0%{opacity:0;transform:translateY(22px)}100%{opacity:1;transform:translateY(0)}}
+
+/* BUTTONS */
+.btn-primary{background:var(--gold);color:var(--dark);padding:.95rem 2.6rem;font-family:var(--sans);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .4s;font-weight:500;display:inline-block}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(197,165,90,.25)}
+.btn-ghost{background:transparent;border:1px solid rgba(197,165,90,.45);color:var(--gold-pale);padding:.95rem 2.6rem;font-family:var(--sans);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .4s;display:inline-block}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* SECTIONS */
+section{padding:6.5rem 2rem}
+.section-inner{max-width:1140px;margin:0 auto}
+.section-tag{font-family:var(--sans);font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.section-heading{font-family:var(--display);font-size:clamp(2.1rem,4.2vw,3.2rem);font-weight:400;line-height:1.18;margin-bottom:1.4rem}
+.section-heading em{font-style:italic;color:var(--gold)}
+.section-body{font-family:var(--serif);font-size:1.22rem;font-weight:300;line-height:1.7;color:var(--cream-muted);max-width:720px}
+.divider-ornament{text-align:center;color:var(--gold);font-size:1.2rem;margin:0 auto;opacity:.6}
+
+/* STORY */
+.story-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center}
+.story-imgs{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.story-imgs img{width:100%;height:380px;object-fit:cover;border:1px solid var(--dark-border);transition:transform 0.6s}
+.story-imgs img:hover{transform:scale(1.03)}
+.story-imgs img:nth-child(2){margin-top:2.5rem}
+.story-stats{display:flex;gap:2.5rem;margin-top:2rem}
+.story-stat .num{font-family:var(--display);font-size:2.6rem;color:var(--gold);font-weight:500;line-height:1}
+.story-stat .label{font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim);margin-top:.5rem}
+
+/* SIGNATURES */
+.sig-section{background:var(--dark-warm);position:relative}
+.sig-intro{text-align:center;max-width:680px;margin:0 auto 4rem}
+.sig-intro .section-body{margin:0 auto}
+.sig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+.sig-card{background:var(--dark-card);border:1px solid var(--dark-border);overflow:hidden;transition:transform .5s,border-color .5s;display:flex;flex-direction:column}
+.sig-card:hover{transform:translateY(-5px);border-color:rgba(197,165,90,.32)}
+.sig-card-img{height:220px;overflow:hidden;position:relative}
+.sig-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.sig-card:hover .sig-card-img img{transform:scale(1.06)}
+.sig-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(22,22,20,.6))}
+.sig-card-body{padding:1.8rem;flex:1;display:flex;flex-direction:column}
+.sig-card-cat{font-family:var(--sans);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem}
+.sig-card-name{font-family:var(--display);font-size:1.32rem;font-weight:500;color:var(--cream);line-height:1.25;margin-bottom:.3rem}
+.sig-card-name-local{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--cream-dim);margin-bottom:.8rem;min-height:1.4em}
+.sig-card-desc{font-family:var(--serif);font-size:1.02rem;color:var(--cream-muted);line-height:1.55;flex:1}
+.sig-card-pairing{margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--dark-border)}
+.sig-card-pairing .pl{font-family:var(--sans);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.4rem}
+.sig-card-pairing .pw{font-family:var(--serif);font-size:1.08rem;font-style:italic;color:var(--cream)}
+.sig-foot{text-align:center;margin-top:3rem}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;gap:.8rem;margin-top:3rem}
+.gallery-item{position:relative;overflow:hidden;border:1px solid var(--dark-border)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item::after{content:attr(data-label);position:absolute;left:0;right:0;bottom:0;padding:1rem;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--cream);background:linear-gradient(transparent,rgba(10,10,10,.85));opacity:0;transition:opacity .4s}
+.gallery-item:hover::after{opacity:1}
+.gallery-item.wide{grid-column:span 2}
+.gallery-item.tall{grid-row:span 2}
+
+/* TESTIMONIALS */
+.test-section{background:linear-gradient(180deg,var(--dark) 0%,var(--dark-warm) 100%)}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:3rem}
+.test-card{background:var(--dark-card);border:1px solid var(--dark-border);padding:2.2rem;position:relative}
+.test-card::before{content:'\201C';position:absolute;top:.3rem;left:1.3rem;font-family:var(--display);font-size:3.5rem;color:var(--gold);opacity:.28}
+.test-stars{color:var(--gold);font-size:.9rem;letter-spacing:.2em;margin-bottom:1rem;padding-top:.8rem}
+.test-text{font-family:var(--serif);font-size:1.08rem;font-style:italic;line-height:1.6;color:var(--cream);margin-bottom:1.2rem}
+.test-author{font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim)}
+.test-source{font-family:var(--sans);font-size:.62rem;letter-spacing:.1em;color:var(--gold);text-decoration:none;margin-top:.3rem;display:inline-block}
+
+/* RESERVATION & CUSTOM INPUTS */
+.res-section{background:var(--dark-warm)}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+.res-form{display:flex;flex-direction:column;gap:1.2rem}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.field{display:flex;flex-direction:column;gap:.45rem}
+.field label{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim)}
+.field label .req{color:var(--gold)}
+.field input,.field select,.field textarea{background:var(--dark);border:1px solid var(--dark-border);color:var(--cream);font-family:var(--serif);font-size:1.05rem;padding:.8rem .9rem;transition:border-color .3s, box-shadow .3s;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 10px rgba(197, 165, 90, 0.15)}
+.field input::placeholder,.field textarea::placeholder{color:var(--cream-dim);opacity:.6}
+.field textarea{resize:vertical;min-height:80px}
+.field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23C5A55A' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center}
+.field input[type="date"]::-webkit-calendar-picker-indicator {
+filter: invert(74%) sepia(21%) saturate(969%) hue-rotate(6deg) brightness(89%) contrast(85%);
+cursor: pointer;
+}
+.dietary-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.diet-check{display:flex;align-items:center;gap:.6rem;font-family:var(--serif);font-size:1.02rem;color:var(--cream-muted);cursor:pointer;padding:.4rem 0;transition:color 0.3s}
+.diet-check:hover{color:var(--gold-pale)}
+.diet-check input{width:18px;height:18px;accent-color:var(--gold);cursor:pointer;flex-shrink:0}
+.honeypot{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+.res-submit{background:var(--gold);color:var(--dark);padding:1rem;font-family:var(--sans);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;transition:all .4s;font-weight:500;margin-top:.5rem}
+.res-submit:hover{background:var(--gold-light);box-shadow:0 0 20px rgba(197,165,90,0.3)}
+.res-submit:disabled{opacity:.5;cursor:not-allowed}
+.form-msg{padding:1rem;font-family:var(--serif);font-size:1.05rem;text-align:center;display:none}
+.form-msg.success{display:block;background:rgba(122,51,68,.15);border:1px solid var(--gold);color:var(--gold-pale)}
+.form-msg.error{display:block;background:rgba(122,51,68,.2);border:1px solid var(--wine);color:#E8B0B8}
+.res-info{display:flex;flex-direction:column;gap:2rem}
+.info-block .info-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.info-block .info-text{font-family:var(--serif);font-size:1.15rem;line-height:1.6;color:var(--cream-muted)}
+.info-block .info-text a{color:var(--cream);text-decoration:none;border-bottom:1px solid var(--gold);transition:color 0.3s}
+.info-block .info-text a:hover{color:var(--gold)}
+
+/* GOOGLE MAPS DARK FILTER */
+.map-embed{margin-top:1rem;border:1px solid var(--dark-border);width:100%;height:280px;filter:grayscale(1) invert(0.9) contrast(1.2);opacity:0.85;transition:opacity 0.3s, filter 0.3s}
+.map-embed:hover{opacity:1;filter:grayscale(0.3) contrast(1.05)}
+
+/* FLOATING ACTIONS WITH GOLD TONE */
+.float-actions{position:fixed;bottom:0;left:0;right:0;z-index:90;display:none;background:rgba(10,10,10,.96);border-top:1px solid var(--dark-border);backdrop-filter:blur(10px)}
+.float-actions a{flex:1;text-align:center;padding:1rem;font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-right:1px solid var(--dark-border)}
+.float-actions a:last-child{border-right:none}
+
+/* RE-DESIGNED WHATSAPP BUTTON (GOLD/DARK) */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:95;width:60px;height:60px;border-radius:50%;background:var(--dark-card);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(197,165,90,.15);transition:transform .3s, border-color .3s, box-shadow .3s;cursor:pointer}
+.wa-float:hover{transform:scale(1.08);border-color:var(--gold-light);box-shadow:0 8px 30px rgba(197,165,90,.3)}
+.wa-float svg{width:30px;height:30px;fill:var(--gold);transition:fill .3s}
+.wa-float:hover svg{fill:var(--gold-light)}
+.wa-tooltip{position:absolute;right:74px;top:50%;transform:translateY(-50%);background:var(--dark-card);border:1px solid var(--gold);color:var(--cream);font-family:var(--sans);font-size:.74rem;letter-spacing:.06em;padding:.6rem 1rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+.wa-float:hover .wa-tooltip{opacity:1}
+
+/* LUXURY SUCCESS MODAL */
+.modal-wrap{position:fixed;inset:0;z-index:1000;background:rgba(5,5,5,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity 0.5s, visibility 0.5s}
+.modal-wrap.open{opacity:1;visibility:visible}
+.modal-card{background:var(--dark-card);border:1px solid var(--gold);padding:3.5rem 2.5rem;max-width:500px;width:90%;text-align:center;position:relative;box-shadow:0 24px 60px rgba(197,165,90,0.2);transform:translateY(30px);transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)}
+.modal-wrap.open .modal-card{transform:translateY(0)}
+.modal-close{position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:var(--gold);font-size:1.4rem;cursor:pointer;transition:color 0.3s, transform 0.3s}
+.modal-close:hover{color:var(--gold-light);transform:rotate(90deg)}
+.modal-icon{font-size:2.8rem;color:var(--gold);margin-bottom:1.5rem;animation:sparkle 2.2s ease infinite}
+.modal-card h3{font-family:var(--display);font-size:1.85rem;color:var(--cream);margin-bottom:1.2rem;font-weight:400;letter-spacing:0.02em}
+.modal-card p{font-family:var(--serif);font-size:1.12rem;color:var(--cream-muted);line-height:1.65}
+@keyframes sparkle{0%,100%{opacity:0.6;transform:scale(0.96)}50%{opacity:1;transform:scale(1.06)}}
+
+/* FOOTER */
+footer{padding:3.5rem 2rem;border-top:1px solid var(--dark-border);text-align:center}
+.footer-brand{font-family:var(--serif);font-size:1.3rem;font-weight:300;color:var(--gold);letter-spacing:.3em;text-transform:uppercase;margin-bottom:1rem}
+.footer-text{font-family:var(--serif);font-size:1.05rem;color:var(--cream-dim);line-height:1.7}
+.footer-text a{color:var(--gold);text-decoration:none}
+.footer-legal{font-family:var(--sans);font-size:.66rem;color:rgba(138,132,120,.55);letter-spacing:.08em;margin-top:1.5rem;line-height:1.6}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:980px){
+.nav-links{display:none}
+.nav-toggle{display:block}
+.story-grid{grid-template-columns:1fr;gap:2.5rem}
+.sig-grid{grid-template-columns:1fr 1fr}
+.test-grid{grid-template-columns:1fr}
+.res-grid{grid-template-columns:1fr;gap:2.5rem}
+.gallery-grid{grid-template-columns:repeat(2,1fr)}
+.mobile-menu{position:fixed;top:0;right:0;bottom:0;width:80%;max-width:320px;background:var(--dark-warm);z-index:200;padding:5rem 2rem 2rem;gap:1.5rem;border-left:1px solid var(--dark-border);transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);display:flex;flex-direction:column;box-shadow:-10px 0 30px rgba(0,0,0,0.5)}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{font-family:var(--serif);font-size:1.4rem;color:var(--cream);text-decoration:none;transition:color 0.3s;letter-spacing:0.05em}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-menu .mclose{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--gold);font-size:1.8rem;cursor:pointer;transition:transform 0.3s}
+.mobile-menu .mclose:hover{transform:rotate(90deg);color:var(--gold-light)}
+.menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:190;opacity:0;visibility:hidden;transition:opacity 0.4s, visibility 0.4s}
+.menu-overlay.open{opacity:1;visibility:visible}
+.float-actions{display:flex}
+body{padding-bottom:54px}
+.wa-float{bottom:70px;right:1.2rem;width:52px;height:52px}
+.wa-float svg{width:28px;height:28px}
+.wa-tooltip{display:none}
+}
+@media(max-width:600px){
+nav{padding:1rem 1.3rem}
+section{padding:4.5rem 1.3rem}
+.sig-grid{grid-template-columns:1fr}
+.field-row{grid-template-columns:1fr}
+.story-imgs img{height:280px}
+.gallery-item.wide{grid-column:span 2}
+.story-stats{gap:1.5rem}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Maison Vie",
+  "image": "https://maisonvie.vn/assets/images/facade.jpg",
+  "@id": "https://maisonvie.vn",
+  "url": "https://maisonvie.vn",
+  "telephone": "+84904150383",
+  "priceRange": "$$$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "28 Tang Bat Ho, Hai Ba Trung",
+    "addressLocality": "Hanoi",
+    "postalCode": "100000",
+    "addressCountry": "VN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 21.0168,
+    "longitude": 105.8594
+  },
+  "servesCuisine": "French Fine Dining",
+  "acceptsReservations": "true",
+  "menu": "https://maisonvie.vn/le-voyage.html#menu",
+  "award": "Michelin Standard Gastronomy"
+}
+</script>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M30 5L35 25H55L39 37L44 57L30 45L16 57L21 37L5 25H25L30 5Z" stroke="#C5A55A" stroke-width="1" fill="none"/>
+</svg>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+<a href="#top" class="nav-brand"><img src="https://www.maisonvie.vn/wp-content/uploads/2020/04/logo2-1-e1588240588705.png" alt="Maison Vie" class="nav-logo"></a>
+<div class="nav-right">
+<div class="nav-links">
+<a href="#story" data-i18n="nav_story">The Story</a>
+<a href="#signatures" data-i18n="nav_menu">Signatures</a>
+<a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+<a href="#reserve" data-i18n="nav_contact">Contact</a>
+</div>
+<div class="lang-switch">
+<button class="lang-btn active" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="fr">FR</button>
+<button class="lang-btn" data-lang="vi">VI</button>
+<button class="lang-btn" data-lang="ja">日本語</button>
+</div>
+<button class="nav-cta" onclick="document.getElementById('reserve').scrollIntoView({behavior:'smooth'})" data-i18n="nav_reserve">Reserve</button>
+<button class="nav-toggle" id="navToggle">☰</button>
+</div>
+</nav>
+
+<!-- MENU BLUR OVERLAY -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+<button class="mclose" id="mclose">✕</button>
+<a href="#story" data-i18n="nav_story">The Story</a>
+<a href="#signatures" data-i18n="nav_menu">Signatures</a>
+<a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+<a href="#reserve" data-i18n="nav_contact">Contact</a>
+<a href="#reserve" style="color:var(--gold)" data-i18n="nav_reserve">Reserve a Table</a>
+<div class="lang-switch" style="border:none;padding:0;margin-top:1rem">
+<button class="lang-btn active" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="fr">FR</button>
+<button class="lang-btn" data-lang="vi">VI</button>
+<button class="lang-btn" data-lang="ja">日本語</button>
+</div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+<div class="hero-bg"></div>
+<div class="hero-tint"></div>
+<div class="hero-content">
+<div class="hero-eyebrow"><a href="https://g.page/r/CaCGDbAoWj1BEBM/review" target="_blank" data-i18n="hero_eyebrow">Fine Dining French Restaurant — Hanoi</a></div>
+<h1 class="hero-title"><em>Le Voyage</em></h1>
+<p class="hero-sub" data-i18n="hero_sub">The essence of French cuisine<br>in the heart of Hanoi.</p>
+<div class="hero-divider"></div>
+<div class="hero-cta-row">
+<a href="#signatures" class="btn-primary" data-i18n="hero_cta1">Discover the Menu</a>
+<a href="#reserve" class="btn-ghost" data-i18n="hero_cta2">Reserve a Table</a>
+</div>
+</div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+<div class="section-inner reveal">
+<div class="story-grid">
+<div>
+<div class="section-tag" data-i18n="story_tag">L'Histoire</div>
+<h2 class="section-heading" data-i18n="story_heading">Three decades of<br>French <em>savoir-faire</em>.</h2>
+<div class="section-body">
+<p data-i18n="story_p1">Set within an elegant French neoclassical villa at 28 Tăng Bạt Hổ, Maison Vie has been a destination for lovers of French cuisine and culture since 2015.</p>
+<p style="margin-top:1rem" data-i18n="story_p2">Guided by our Executive Chef with 30 years of culinary experience, every dish marries classical French technique with the finest Vietnamese terroir — a quiet, precise art served with warmth.</p>
+</div>
+<div class="story-stats">
+<div class="story-stat"><div class="num">30</div><div class="label" data-i18n="story_stat1">Years of Expertise</div></div>
+<div class="story-stat"><div class="num">2015</div><div class="label" data-i18n="story_stat2">Serving Hanoi Since</div></div>
+<div class="story-stat"><div class="num" data-i18n="story_stat3_num">2★</div><div class="label" data-i18n="story_stat3">Michelin Standards</div></div>
+</div>
+</div>
+<div class="story-imgs">
+<img src="https://www.maisonvie.vn/wp-content/uploads/2025/02/main-img1-600x760-1.webp" alt="Maison Vie interior" loading="lazy">
+<img src="https://www.maisonvie.vn/wp-content/uploads/2025/02/main-img2-600x760-2.webp" alt="Maison Vie dish" loading="lazy">
+</div>
+</div>
+</div>
+</section>
+
+<!-- SIGNATURES -->
+<section id="signatures" class="sig-section">
+<div class="section-inner">
+<div class="sig-intro reveal">
+<div class="section-tag" data-i18n="sig_tag">Les Signatures</div>
+<h2 class="section-heading" data-i18n="sig_heading">Dishes that <em>define</em> us.</h2>
+<div class="section-body" data-i18n="sig_body">A glimpse of our à la carte — each plate crafted from premium ingredients with classical French technique, and paired by our sommelier.</div>
+</div>
+
+<div class="sig-grid reveal">
+<!-- 1 Loup de Mer Sauvage -->
+<div class="sig-card">
+<div class="sig-card-img"><img src="https://www.maisonvie.vn/wp-content/uploads/2019/10/Pan-seared-Foie-Gras.jpg" alt="Atlantic sea bass" loading="lazy"></div>
+<div class="sig-card-body">
+<div class="sig-card-cat" data-i18n="sig_cat_signature">Signature</div>
+<div class="sig-card-name" data-i18n="sig1_name">Atlantic Sea Bass & Champagne Caviar</div>
+<div class="sig-card-name-local" data-i18n="sig1_local">Loup de Mer Rôti, Émulsion Champagne au Caviar</div>
+<div class="sig-card-desc" data-i18n="sig1_desc">Pan-roasted Atlantic sea bass, slow-braised baby leeks, caviar Champagne emulsion.</div>
+<div class="sig-card-pairing"><span class="pl" data-i18n="pairing_label">Wine Pairing</span><span class="pw">Domaine Leflaive Puligny-Montrachet</span></div>
+</div>
+</div>
+<!-- 2 Buffalo Wellington -->
+<div class="sig-card">
+<div class="sig-card-img"><img src="https://www.maisonvie.vn/wp-content/uploads/2019/11/Steak-Tartare.jpg" alt="Buffalo Wellington" loading="lazy"></div>
+<div class="sig-card-body">
+<div class="sig-card-cat" data-i18n="sig_cat_signature">Signature</div>
+<div class="sig-card-name" data-i18n="sig2_name">Vietnamese Buffalo Wellington</div>
+<div class="sig-card-name-local" data-i18n="sig2_local">Wellington de Buffle du Vietnam</div>
+<div class="sig-card-desc" data-i18n="sig2_desc">Vietnamese buffalo, mushroom duxelles, Phú Quốc pepper jus.</div>
+<div class="sig-card-pairing"><span class="pl" data-i18n="pairing_label">Wine Pairing</span><span class="pw">Château Haut-Rocher Saint-Émilion Grand Cru</span></div>
+</div>
+</div>
+<!-- 3 Wagyu -->
+<div class="sig-card">
+<div class="sig-card-img"><img src="https://www.maisonvie.vn/wp-content/uploads/2025/02/main-img7-600x956-1.webp" alt="Wagyu beef" loading="lazy"></div>
+<div class="sig-card-body">
+<div class="sig-card-cat" data-i18n="sig_cat_main">Main Course</div>
+<div class="sig-card-name" data-i18n="sig3_name">Wagyu Beef MBS 6–7</div>
+<div class="sig-card-name-local" data-i18n="sig3_local">Bœuf Wagyu MBS 6–7</div>
+<div class="sig-card-desc" data-i18n="sig3_desc">Premium Wagyu, Jerusalem artichoke, Chioggia beetroot.</div>
+<div class="sig-card-pairing"><span class="pl" data-i18n="pairing_label">Wine Pairing</span><span class="pw">Château Lynch-Bages Pauillac Grand Cru Classé</span></div>
+</div>
+</div>
+<!-- 4 Scallop Tartare -->
+<div class="sig-card">
+<div class="sig-card-img"><img src="https://www.maisonvie.vn/wp-content/uploads/2019/10/Escargots.jpg" alt="Scallop tartare" loading="lazy"></div>
+<div class="sig-card-body">
+<div class="sig-card-cat" data-i18n="sig_cat_starter">Cold Starter</div>
+<div class="sig-card-name" data-i18n="sig4_name">Hokkaido Scallop Tartare</div>
+<div class="sig-card-name-local" data-i18n="sig4_local">Saint-Jacques en Tartare — Caviar</div>
+<div class="sig-card-desc" data-i18n="sig4_desc">Hokkaido scallop tartare, Aquitaine caviar, yuzu cream.</div>
+<div class="sig-card-pairing"><span class="pl" data-i18n="pairing_label">Wine Pairing</span><span class="pw">Champagne Taittinger Brut Réserve</span></div>
+</div>
+</div>
+<!-- 5 Foie Gras -->
+<div class="sig-card">
+<div class="sig-card-img"><img src="https://www.maisonvie.vn/wp-content/uploads/2025/02/Escargots-1.webp" alt="Seared foie gras" loading="lazy"></div>
+<div class="sig-card-body">
+<div class="sig-card-cat" data-i18n="sig_cat_starter">Hot Starter</div>
+<div class="sig-card-name" data-i18n="sig5_name">Seared Foie Gras</div>
+<div class="sig-card-name-local" data-i18n="sig5_local">Foie Gras Poêlé</div>
+<div class="sig-card-desc" data-i18n="sig5_desc">Pan-seared foie gras, seasonal fruit, reduced jus.</div>
+<div class="sig-card-pairing"><span class="pl" data-i18n="pairing_label">Wine Pairing</span><span class="pw">Château d'Yquem Sauternes Premier Cru Supérieur</span></div>
+</div>
+</div>
+<!-- 6 Souffle -->
+<div class="sig-card">
+<div class="sig-card-img"><img src="https://www.maisonvie.vn/wp-content/uploads/2020/04/homeslide-2.jpg" alt="Warm souffle" loading="lazy"></div>
+<div class="sig-card-body">
+<div class="sig-card-cat" data-i18n="sig_cat_dessert">Dessert</div>
+<div class="sig-card-name" data-i18n="sig6_name">Warm Seasonal Soufflé</div>
+<div class="sig-card-name-local" data-i18n="sig6_local">Soufflé Chaud du Moment</div>
+<div class="sig-card-desc" data-i18n="sig6_desc">Warm soufflé with Phú Quốc vanilla ice cream.</div>
+<div class="sig-card-pairing"><span class="pl" data-i18n="pairing_label">Wine Pairing</span><span class="pw">Château d'Yquem Sauternes Premier Cru Supérieur</span></div>
+</div>
+</div>
+</div>
+<div class="sig-foot reveal">
+<a href="https://www.maisonvie.vn/a-la-carte/" target="_blank" class="btn-ghost" data-i18n="sig_cta">View the Full À La Carte</a>
+</div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+<div class="section-inner">
+<div class="reveal" style="text-align:center;margin-bottom:1rem">
+<div class="section-tag" data-i18n="gal_tag">L'Atmosphère</div>
+<h2 class="section-heading" data-i18n="gal_heading">A <em>neoclassical</em> villa.</h2>
+</div>
+<div class="gallery-grid reveal">
+<div class="gallery-item wide tall" data-label="La Façade"><img src="https://nhahang-pearl.vercel.app/assets/images/hero.png" alt="Facade" loading="lazy"></div>
+<div class="gallery-item" data-label="Salle Principale"><img src="https://nhahang-pearl.vercel.app/assets/images/interior.png" alt="Main hall" loading="lazy"></div>
+<div class="gallery-item" data-label="Salon Privé"><img src="https://nhahang-pearl.vercel.app/assets/images/vip.png" alt="VIP salon" loading="lazy"></div>
+<div class="gallery-item" data-label="Le Jardin"><img src="https://nhahang-pearl.vercel.app/assets/images/garden.png" alt="Garden" loading="lazy"></div>
+<div class="gallery-item" data-label="L'Art Culinaire"><img src="https://nhahang-pearl.vercel.app/assets/images/dishes.png" alt="Cuisine" loading="lazy"></div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="test-section">
+<div class="section-inner">
+<div class="reveal" style="text-align:center;margin-bottom:1rem">
+<div class="section-tag" data-i18n="test_tag">Témoignages</div>
+<h2 class="section-heading" data-i18n="test_heading">Words from <em>our guests</em>.</h2>
+</div>
+<div class="test-grid reveal">
+<div class="test-card">
+<div class="test-stars">★★★★★</div>
+<div class="test-text" data-i18n="test1_text">Wonderful food and supremely warm and attentive service. One of the few restaurants open on the eve of Tet — thankfully!</div>
+<div class="test-author">Fred R.</div>
+<span class="test-source" data-i18n="test1_source">Michelin Guide Review</span>
+</div>
+<div class="test-card">
+<div class="test-stars">★★★★★</div>
+<div class="test-text" data-i18n="test2_text">Elegant food, wonderfully presented and excellently served. The beef ribs in a subtle sauce, and profiteroles for dessert — everyone had a great time.</div>
+<div class="test-author">Sheila A.</div>
+<span class="test-source" data-i18n="test2_source">Gault & Millau Guide</span>
+</div>
+<div class="test-card">
+<div class="test-stars">★★★★★</div>
+<div class="test-text jp-serif" data-i18n="test3_text">雰囲気もよく、スタッフがとても機敏にサーブしてくださいました。焼きたてのパンが特に美味しく、ベトナムのフランス料理はまさに絶品でした。</div>
+<div class="test-author">大納言 はぴ子</div>
+<span class="test-source" data-i18n="test3_source">Les Grandes Tables du Monde</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- RESERVATION -->
+<section id="reserve" class="res-section">
+<div class="section-inner">
+<div class="reveal" style="text-align:center;margin-bottom:3rem">
+<div class="section-tag" data-i18n="res_tag">Réservation</div>
+<h2 class="section-heading" data-i18n="res_heading">Reserve <em>your table</em>.</h2>
+<div class="section-body" style="margin:0 auto" data-i18n="res_body">Let us prepare an unforgettable dining experience for you. We recommend booking 48 hours in advance.</div>
+</div>
+
+<div class="res-grid reveal">
+<!-- FORM -->
+<form class="res-form" id="resForm" autocomplete="on">
+<input type="text" class="honeypot" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+<div class="field-row">
+<div class="field">
+<label data-i18n="f_name">Full Name <span class="req">*</span></label>
+<input type="text" name="name" id="f_name" required>
+</div>
+<div class="field">
+<label data-i18n="f_phone">Phone <span class="req">*</span></label>
+<input type="tel" name="phone" id="f_phone" required>
+</div>
+</div>
+<div class="field">
+<label data-i18n="f_email">Email <span class="req">*</span></label>
+<input type="email" name="email" id="f_email" required>
+</div>
+<div class="field-row">
+<div class="field">
+<label data-i18n="f_guests">Guests <span class="req">*</span></label>
+<select name="guests" id="f_guests" required></select>
+</div>
+<div class="field">
+<label data-i18n="f_date">Date <span class="req">*</span></label>
+<input type="date" name="date" id="f_date" required>
+</div>
+</div>
+<div class="field-row">
+<div class="field">
+<label data-i18n="f_time">Time <span class="req">*</span></label>
+<select name="time" id="f_time" required></select>
+</div>
+<div class="field">
+<label data-i18n="f_seating">Seating Preference</label>
+<select name="seating_preference" id="f_seating"></select>
+</div>
+</div>
+<div class="field">
+<label data-i18n="f_purpose">Special Occasion</label>
+<select name="purpose" id="f_purpose"></select>
+</div>
+<div class="field">
+<label data-i18n="f_dietary">Dietary / Allergies</label>
+<div class="dietary-grid">
+<label class="diet-check"><input type="checkbox" name="dietary" value="vegetarian"><span data-i18n="d_veg">Vegetarian</span></label>
+<label class="diet-check"><input type="checkbox" name="dietary" value="vegan"><span data-i18n="d_vegan">Vegan</span></label>
+<label class="diet-check"><input type="checkbox" name="dietary" value="gluten_free"><span data-i18n="d_gluten">Gluten-free</span></label>
+<label class="diet-check"><input type="checkbox" name="dietary" value="seafood_allergy"><span data-i18n="d_seafood">Seafood allergy</span></label>
+<label class="diet-check"><input type="checkbox" name="dietary" value="nut_allergy"><span data-i18n="d_nut">Nut allergy</span></label>
+<label class="diet-check"><input type="checkbox" name="dietary" value="halal"><span data-i18n="d_halal">Halal</span></label>
+</div>
+</div>
+<div class="field">
+<label data-i18n="f_notes">Additional Requests</label>
+<textarea name="notes" id="f_notes" rows="3"></textarea>
+</div>
+<button type="submit" class="res-submit" id="resSubmit" data-i18n="f_submit">Request Booking</button>
+<div class="form-msg" id="formMsg"></div>
+</form>
+
+<!-- INFO + MAP -->
+<div class="res-info">
+<div class="info-block">
+<div class="info-label" data-i18n="i_address">Address</div>
+<div class="info-text"><a href="https://g.page/r/CaCGDbAoWj1BEBM/review" target="_blank">28 Tăng Bạt Hổ, Hai Bà Trưng,<br>Hà Nội, Việt Nam</a></div>
+</div>
+<div class="info-block">
+<div class="info-label" data-i18n="i_contact">Contact</div>
+<div class="info-text">
+<span data-i18n="i_hotline">Hotline</span>: <a href="tel:+84904150383">+84 904 150 383</a><br>
+<span data-i18n="i_tel">Tel</span>: <a href="tel:+842436330206">024 3633 0206</a> · <span data-i18n="i_mobile">Mobile</span>: <a href="tel:+84776998899">+84 776 998 899</a><br>
+<a href="mailto:info@maisonvie.vn">info@maisonvie.vn</a>
+</div>
+</div>
+<div class="info-block">
+<div class="info-label" data-i18n="i_hours">Opening Hours</div>
+<div class="info-text" data-i18n="i_hours_text">Daily: 10:00 – 22:00</div>
+</div>
+<iframe class="map-embed" src="https://www.google.com/maps?q=28+Tang+Bat+Ho,+Hai+Ba+Trung,+Hanoi&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Maison Vie location"></iframe>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-brand">Maison Vie</div>
+<div class="footer-text">
+<span data-i18n="foot_tagline">The essence of French cuisine in the heart of Hanoi</span><br>
+28 Tăng Bạt Hổ, Hai Bà Trưng, Hà Nội · <a href="tel:+84904150383">+84 904 150 383</a> · <a href="mailto:info@maisonvie.vn">info@maisonvie.vn</a><br>
+<a href="https://g.page/r/CaCGDbAoWj1BEBM/review" target="_blank" data-i18n="foot_review">Leave us a review on Google</a> · <a href="https://www.maisonvie.vn" target="_blank">maisonvie.vn</a>
+</div>
+<div class="footer-legal" data-i18n="foot_legal">© 2026 Maison Vie · Executive Chef Nguyen Thanh · 30 Years of French Culinary Art · Serving Hanoi since 2015. All rights reserved.</div>
+</footer>
+
+<!-- FLOATING ACTIONS (mobile) -->
+<div class="float-actions">
+<a href="tel:+84904150383" data-i18n="float_call">📞 Call</a>
+<a id="waMobile" href="#" data-i18n="float_wa">💬 WhatsApp</a>
+<a href="#reserve" data-i18n="float_reserve">✦ Reserve</a>
+</div>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+<span class="wa-tooltip" data-i18n="wa_tooltip">Quick booking via WhatsApp</span>
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- LUXURY SUCCESS MODAL -->
+<div class="modal-wrap" id="successModal">
+<div class="modal-card">
+<button class="modal-close" id="modalClose">✕</button>
+<div class="modal-icon">✦</div>
+<h3 id="modalTitle" data-i18n="m_title">Invitation Dispatched</h3>
+<p id="modalBody" data-i18n="m_body">Your reservation details have been elegantly processed. A Gilded VIP digital invitation has been sent to your email address, and our Butler service will reach out shortly to tailor your evening.</p>
+</div>
+</div>
+
+<!-- SCRIPTS INSERTED NEXT -->
+<script>
+/* ============================================================
+   MAISON VIE — CONFIG
+   👉 Paste your Supabase credentials below (from Supabase →
+      Project Settings → API). Leave empty to run in DEMO mode.
+   ============================================================ */
+const SUPABASE_URL = "";        // e.g. "https://abcd1234.supabase.co"
+const SUPABASE_ANON_KEY = "";   // e.g. "eyJhbGciOi..."
+
+/* ============================================================
+   TRANSLATIONS — EN · FR · VI · JA
+   ============================================================ */
+const I18N = {
+en:{
+nav_story:"The Story",nav_menu:"Signatures",nav_gallery:"Gallery",nav_contact:"Contact",nav_reserve:"Reserve",
+hero_eyebrow:"Fine Dining French Restaurant — Hanoi",hero_sub:"The essence of French cuisine<br>in the heart of Hanoi.",hero_cta1:"Discover the Menu",hero_cta2:"Reserve a Table",
+story_tag:"L'Histoire",story_heading:"Three decades of<br>French <em>savoir-faire</em>.",
+story_p1:"Set within an elegant French neoclassical villa at 28 Tăng Bạt Hổ, Maison Vie has been a destination for lovers of French cuisine and culture since 2015.",
+story_p2:"Guided by our Executive Chef with 30 years of culinary experience, every dish marries classical French technique with the finest Vietnamese terroir — a quiet, precise art served with warmth.",
+story_stat1:"Years of Expertise",story_stat2:"Serving Hanoi Since",story_stat3_num:"2★",story_stat3:"Michelin Standards",
+sig_tag:"Les Signatures",sig_heading:"Dishes that <em>define</em> us.",sig_body:"A glimpse of our à la carte — each plate crafted from premium ingredients with classical French technique, and paired by our sommelier.",
+sig_cat_signature:"Signature",sig_cat_main:"Main Course",sig_cat_starter:"Cold Starter",sig_cat_dessert:"Dessert",pairing_label:"Wine Pairing",
+sig1_name:"Atlantic Sea Bass & Champagne Caviar",sig1_desc:"Pan-roasted Atlantic sea bass, slow-braised baby leeks, caviar Champagne emulsion.",
+sig2_name:"Vietnamese Buffalo Wellington",sig2_desc:"Vietnamese buffalo, mushroom duxelles, Phú Quốc pepper jus.",
+sig3_name:"Wagyu Beef MBS 6–7",sig3_desc:"Premium Wagyu beef MBS 6–7, smooth Jerusalem artichoke purée, glazed Chioggia beetroot.",
+sig4_name:"Hokkaido Scallop Tartare",sig4_desc:"Hokkaido scallop tartare, Aquitaine caviar, local yuzu cream, micro-herbs.",
+sig5_name:"Seared Foie Gras",sig5_desc:"Pan-seared foie gras, seasonal caramelized orchard fruit, Port wine reduction.",
+sig6_name:"Warm Seasonal Soufflé",sig6_desc:"Warm seasonal Grand Marnier soufflé with rich Phu Quoc vanilla bean ice cream.",
+sig1_local:"Loup de Mer Rôti, Émulsion Champagne au Caviar",sig2_local:"Wellington de Buffle du Vietnam",sig3_local:"Bœuf Wagyu MBS 6–7",sig4_local:"Saint-Jacques en Tartare — Caviar",sig5_local:"Foie Gras Poêlé",sig6_local:"Soufflé Chaud du Moment",sig_cta:"View the Full À La Carte",
+gal_tag:"L'Atmosphère",gal_heading:"A <em>neoclassical</em> villa.",
+test_tag:"Témoignages",test_heading:"Words from <em>our guests</em>.",
+test1_text:"Wonderful food and supremely warm and attentive service. One of the few restaurants open on the eve of Tet — thankfully!",
+test2_text:"Elegant food, wonderfully presented and excellently served. The beef ribs in a subtle sauce, and profiteroles for dessert — everyone had a great time.",
+test3_text:"A lovely atmosphere and remarkably attentive, efficient staff. The freshly baked bread was especially delicious — Vietnamese French cuisine at its finest.",
+test1_source:"Michelin Guide Review",test2_source:"Gault & Millau Guide",test3_source:"Les Grandes Tables du Monde",
+res_tag:"Réservation",res_heading:"Reserve <em>your table</em>.",res_body:"Let us prepare an unforgettable dining experience for you. We recommend booking 48 hours in advance.",
+f_name:"Full Name",f_phone:"Phone",f_email:"Email",f_guests:"Guests",f_date:"Date",f_time:"Time",f_dietary:"Dietary / Allergies",f_notes:"Additional Requests",f_submit:"Request Booking",
+f_seating:"Seating Preference",f_purpose:"Special Occasion",
+seat_standard:"Standard Public Dining Room (1st Floor)",seat_private:"Private Dining Room (Subject to Availability, 2nd Floor)",seat_window:"Big Function Room (3rd Floor)",
+purp_dining:"Culinary Appreciation",purp_business:"Business & VIP Entertainment",purp_anniversary:"Anniversary / Birthday Celebration",purp_proposal:"Marriage Proposal 💍",
+d_veg:"Vegetarian",d_vegan:"Vegan",d_gluten:"Gluten-free",d_seafood:"Seafood allergy",d_nut:"Nut allergy",d_halal:"Halal",
+guests_one:"guest",guests_many:"guests",guests_over:"Over 20 — please call us",time_lunch:"Lunch",time_dinner:"Dinner",time_choose:"Select a time",guests_choose:"Select guests",
+i_address:"Address",i_contact:"Contact",i_hotline:"Hotline",i_tel:"Tel",i_mobile:"Mobile",i_hours:"Opening Hours",i_hours_text:"Daily: 10:00 – 22:00",
+foot_tagline:"The essence of French cuisine in the heart of Hanoi",foot_review:"Leave us a review on Google",
+foot_legal:"© 2026 Maison Vie · Executive Chef Nguyen Thanh · 30 Years of French Culinary Art · Serving Hanoi since 2015. All rights reserved.",
+float_call:"📞 Call",float_map:"📍 Directions",float_reserve:"✦ Reserve",float_wa:"💬 WhatsApp",wa_tooltip:"Quick booking via WhatsApp",wa_msg:"Hello Maison Vie, I would like to book a table. Name: ___, Guests: ___, Date: ___, Time: ___",
+msg_sending:"Sending…",msg_success:"Thank you! Your reservation request has been received.",
+msg_demo:"✓ Demo mode — your details are valid. Connect Supabase to save bookings live.",msg_error:"Something went wrong. Please call us at +84 904 150 383.",msg_invalid_email:"Please enter a valid email address.",msg_past:"Please choose a future date.",
+m_title:"Invitation Dispatched",
+m_body:"Your reservation request has been received with the highest regard. A Gilded VIP digital invitation has been dispatched to your email, and our concierge will contact you shortly to confirm your preferences."
+},
+fr:{
+nav_story:"L'Histoire",nav_menu:"Signatures",nav_gallery:"Galerie",nav_contact:"Contact",nav_reserve:"Réserver",
+hero_eyebrow:"Restaurant Français Gastronomique — Hanoï",hero_sub:"L'essence de la cuisine française<br>au cœur de Hanoï.",hero_cta1:"Découvrir le Menu",hero_cta2:"Réserver une Table",
+story_tag:"L'Histoire",story_heading:"Trois décennies de<br><em>savoir-faire</em> français.",
+story_p1:"Installé dans une élégante villa néoclassique française au 28 Tăng Bạt Hổ, Maison Vie est depuis 2015 une destination pour les amoureux de la cuisine et de la culture françaises.",
+story_p2:"Sous la direction de notre Chef Exécutif fort de 30 ans d'expérience, chaque plat marie la technique française classique au meilleur terroir vietnamien.",
+story_stat1:"Ans d'Expertise",story_stat2:"Au Service de Hanoï depuis",story_stat3_num:"2★",story_stat3:"Standards Michelin",
+sig_tag:"Les Signatures",sig_heading:"Des plats qui nous <em>définissent</em>.",sig_body:"Un aperçu de notre carte — chaque assiette élaborée avec des produits d'exception et la technique française classique, accordée par notre sommelier.",
+sig_cat_signature:"Signature",sig_cat_main:"Plat Principal",sig_cat_starter:"Entrée Froide",sig_cat_dessert:"Dessert",pairing_label:"Accord Mets-Vin",
+sig1_name:"Loup de Mer Sauvage & Champagne Caviar",sig1_desc:"Loup de mer rôti à la poêle, jeunes poireaux braisés, émulsion de Champagne au caviar.",
+sig2_name:"Wellington de Buffle du Vietnam",sig2_desc:"Buffle vietnamien, duxelles de champignons, jus au poivre de Phú Quốc.",
+sig3_name:"Bœuf Wagyu MBS 6–7",sig3_desc:"Wagyu d'exception, purée fine de topinambours, betterave Chioggia glacée.",
+sig4_name:"Saint-Jacques en Tartare",sig4_desc:"Tartare de Saint-Jacques Hokkaido, caviar d'Aquitaine, crème de yuzu local, jeunes herbes.",
+sig5_name:"Foie Gras Poêlé",sig5_desc:"Foie gras poêlé, fruits de saison caramélisés, réduction au vin de Porto.",
+sig6_name:"Soufflé Chaud du Moment",sig6_desc:"Soufflé chaud au Grand Marnier, glace onctueuse à la vanille de Phú Quốc.",
+sig1_local:"Loup de Mer Rôti, Émulsion Champagne au Caviar",sig2_local:"Wellington de Buffle du Vietnam",sig3_local:"Bœuf Wagyu MBS 6–7",sig4_local:"Saint-Jacques en Tartare — Caviar",sig5_local:"Foie Gras Poêlé",sig6_local:"Soufflé Chaud du Moment",sig_cta:"Voir la Carte Complète",
+gal_tag:"L'Atmosphère",gal_heading:"Une villa <em>néoclassique</em>.",
+test_tag:"Témoignages",test_heading:"Les mots de <em>nos hôtes</em>.",
+test1_text:"Une cuisine merveilleuse et un service d'une chaleur et d'une attention remarquables. L'un des rares restaurants ouverts la veille du Têt — heureusement !",
+test2_text:"Cuisine élégante, magnifiquement présentée et parfaitement servie. Les côtes de bœuf en sauce subtile et les profiteroles en dessert — tout le monde a passé un excellent moment.",
+test3_text:"Une atmosphère charmante et un personnel d'une attention et d'une efficacité remarquables. Le pain fraîchement cuit était particulièrement délicieux — la cuisine franco-vietnamienne dans toute sa splendeur.",
+test1_source:"Guide Michelin",test2_source:"Guide Gault & Millau",test3_source:"Les Grandes Tables du Monde",
+res_tag:"Réservation",res_heading:"Réservez <em>votre table</em>.",res_body:"Laissez-nous préparer pour vous une expérience inoubliable. Nous recommandons de réserver 48 heures à l'avance.",
+f_name:"Nom Complet",f_phone:"Téléphone",f_email:"Email",f_guests:"Convives",f_date:"Date",f_time:"Heure",f_dietary:"Régime / Allergies",f_notes:"Demandes Particulières",f_submit:"Demander une Réservation",
+f_seating:"Préférence de Table",f_purpose:"Occasion Spéciale",
+seat_standard:"Salle à Manger Publique Standard (1er Étage)",seat_private:"Salon Privé (Sous réserve de disponibilité, 2ème Étage)",seat_window:"Grande Salle de Réception (3ème Étage)",
+purp_dining:"Appréciation Gastronomique",purp_business:"Repas d'Affaires & VIP",purp_anniversary:"Célébration d'Anniversaire",purp_proposal:"Demande en Mariage 💍",
+d_veg:"Végétarien",d_vegan:"Végétalien",d_gluten:"Sans gluten",d_seafood:"Allergie fruits de mer",d_nut:"Allergie aux noix",d_halal:"Halal",
+guests_one:"convive",guests_many:"convives",guests_over:"Plus de 20 — appelez-nous",time_lunch:"Déjeuner",time_dinner:"Dîner",time_choose:"Choisir une heure",guests_choose:"Choisir",
+i_address:"Adresse",i_contact:"Contact",i_hotline:"Hotline",i_tel:"Tél",i_mobile:"Mobile",i_hours:"Horaires",i_hours_text:"Tous les jours : 10h00 – 22h00",
+foot_tagline:"L'essence de la cuisine française au cœur de Hanoï",foot_review:"Laissez-nous un avis sur Google",
+foot_legal:"© 2026 Maison Vie · Chef Exécutif Nguyen Thanh · 30 ans d'art culinaire français · Depuis 2015. Tous droits réservés.",
+float_call:"📞 Appeler",float_map:"📍 Itinéraire",float_reserve:"✦ Réserver",float_wa:"💬 WhatsApp",wa_tooltip:"Réservation rapide via WhatsApp",wa_msg:"Bonjour Maison Vie, je souhaite réserver une table. Nom : ___, Convives : ___, Date : ___, Heure : ___",
+msg_sending:"Envoi…",msg_success:"Merci ! Votre demande de réservation a été reçue.",
+msg_demo:"✓ Mode démo — vos informations sont valides. Connectez Supabase pour enregistrer les réservations.",msg_error:"Une erreur s'est produite. Appelez-nous au +84 904 150 383.",msg_invalid_email:"Veuillez saisir une adresse email valide.",msg_past:"Veuillez choisir une date future.",
+m_title:"Invitation Envoyée",
+m_body:"Votre demande de réservation a été accueillie avec la plus grande considération. Une invitation numérique VIP a été envoyée à votre adresse email, et notre concierge vous contactera sous peu pour finaliser vos préférences."
+},
+vi:{
+nav_story:"Câu Chuyện",nav_menu:"Món Đặc Sắc",nav_gallery:"Không Gian",nav_contact:"Liên Hệ",nav_reserve:"Đặt Bàn",
+hero_eyebrow:"Nhà Hàng Pháp Fine Dining — Hà Nội",hero_sub:"Tinh hoa ẩm thực Pháp<br>giữa lòng Hà Nội.",hero_cta1:"Khám Phá Thực Đơn",hero_cta2:"Đặt Bàn Ngay",
+story_tag:"Câu Chuyện",story_heading:"Ba thập kỷ tinh hoa<br>ẩm thực <em>Pháp</em>.",
+story_p1:"Tọa lạc trong một biệt thự Tân cổ điển Pháp lộng lẫy tại 28 Tăng Bạt Hổ, Maison Vie là điểm đến của những người yêu ẩm thực và văn hóa Pháp từ năm 2015.",
+story_p2:"Dưới sự dẫn dắt của Bếp trưởng Điều hành với 30 năm kinh nghiệm ẩm thực Pháp, mỗi món ăn là kết tinh giữa kỹ thuật Pháp cổ điển và nguyên liệu tinh túy nhất của Việt Nam.",
+story_stat1:"Năm Kinh Nghiệm",story_stat2:"Phục Vụ Hà Nội Từ",story_stat3_num:"2★",story_stat3:"Tiêu Chuẩn Michelin",
+sig_tag:"Món Đặc Sắc",sig_heading:"Những món <em>định danh</em> chúng tôi.",sig_body:"Một phần thực đơn à la carte — mỗi món được chế tác từ nguyên liệu thượng hạng theo kỹ thuật Pháp cổ điển, kèm gợi ý rượu vang từ sommelier.",
+sig_cat_signature:"Signature",sig_cat_main:"Món Chính",sig_cat_starter:"Khai Vị Lạnh",sig_cat_dessert:"Tráng Miệng",pairing_label:"Gợi Ý Rượu Vang",
+sig1_name:"Cá Chẽm Đại Dương & Trứng Cá Tầm",sig1_desc:"Cá chẽm áp chảo da giòn, tỏi tây non om mềm, sốt trứng cá tầm Champagne thượng hạng.",
+sig2_name:"Wellington Thịt Trâu Việt Nam",sig2_desc:"Thịt trâu Việt Nam, nhân nấm duxelles, sốt tiêu Phú Quốc.",
+sig3_name:"Bò Wagyu MBS 6–7",sig3_desc:"Bò Wagyu thượng hạng, atisô Jerusalem nghiền mịn, củ dền Chioggia sốt bóng.",
+sig4_name:"Sò Điệp Hokkaido Tartare",sig4_desc:"Sò điệp Hokkaido tartare, caviar Aquitaine, kem yuzu Việt Quất, thảo mộc non.",
+sig5_name:"Gan Ngỗng Áp Chảo",sig5_desc:"Gan ngỗng áp chảo, trái cây theo mùa caramel hóa, sốt cô đặc rượu Port.",
+sig6_name:"Soufflé Nóng Theo Mùa",sig6_desc:"Soufflé nóng vị rượu Grand Marnier, kem vani Phú Quốc.",
+sig1_local:"Loup de Mer Rôti, Émulsion Champagne au Caviar",sig2_local:"Wellington de Buffle du Vietnam",sig3_local:"Bœuf Wagyu MBS 6–7",sig4_local:"Saint-Jacques en Tartare — Caviar",sig5_local:"Foie Gras Poêlé",sig6_local:"Soufflé Chaud du Moment",sig_cta:"Xem Toàn Bộ Thực Đơn",
+gal_tag:"Không Gian",gal_heading:"Biệt thự <em>Tân cổ điển</em>.",
+test_tag:"Cảm Nhận",test_heading:"Lời từ <em>thực khách</em>.",
+test1_text:"Món ăn tuyệt vời cùng dịch vụ ấm áp và chu đáo. Một trong số ít nhà hàng mở cửa vào đêm Giao thừa — thật may mắn!",
+test2_text:"Món ăn thanh lịch, trình bày tuyệt đẹp và phục vụ xuất sắc. Sườn bò trong sốt tinh tế, và profiteroles tráng miệng — ai cũng có khoảng thời gian tuyệt vời.",
+test3_text:"Không gian dễ chịu và đội ngũ nhân viên nhanh nhẹn, chu đáo. Bánh mì nướng nóng hổi đặc biệt ngon — ẩm thực Pháp-Việt ở đẳng cấp cao nhất.",
+test1_source:"Đánh giá từ Michelin Guide",test2_source:"Cẩm nang Gault & Millau",test3_source:"Hiệp hội Les Grandes Tables",
+res_tag:"Đặt Bàn",res_heading:"Đặt <em>bàn của bạn</em>.",res_body:"Hãy để chúng tôi chuẩn bị một trải nghiệm ẩm thực khó quên dành riêng cho bạn. Khuyến nghị đặt bàn trước 48 giờ.",
+f_name:"Họ và Tên",f_phone:"Số Điện Thoại",f_email:"Email",f_guests:"Số Khách",f_date:"Ngày",f_time:"Giờ",f_dietary:"Kiêng / Dị Ứng",f_notes:"Yêu Cầu Khác",f_submit:"Gửi Yêu Cầu Đặt Bàn",
+f_seating:"Vị Trí Ưu Thích",f_purpose:"Dịp Đặc Biệt",
+seat_standard:"Sảnh tiệc tiêu chuẩn (Tầng 1)",seat_private:"Phòng riêng (Nếu còn trống, Tầng 2)",seat_window:"Phòng tiệc lớn (Tầng 3)",
+purp_dining:"Thưởng Thức Ẩm Thực",purp_business:"Tiếp Khách Quý & Đối Tác",purp_anniversary:"Kỷ Niệm / Sinh Nhật",purp_proposal:"Cầu Hôn 💍",
+d_veg:"Chay",d_vegan:"Thuần chay",d_gluten:"Không gluten",d_seafood:"Dị ứng hải sản",d_nut:"Dị ứng hạt",d_halal:"Halal",
+guests_one:"khách",guests_many:"khách",guests_over:"Trên 20 — vui lòng gọi cho chúng tôi",time_lunch:"Buổi trưa",time_dinner:"Buổi tối",time_choose:"Chọn giờ",guests_choose:"Chọn số khách",
+i_address:"Địa Chỉ",i_contact:"Liên Hệ",i_hotline:"Hotline",i_tel:"ĐT bàn",i_mobile:"Di động",i_hours:"Giờ Mở Cửa",i_hours_text:"Hằng ngày: 10:00 – 22:00",
+foot_tagline:"Tinh hoa ẩm thực Pháp giữa lòng Hà Nội",foot_review:"Đánh giá chúng tôi trên Google",
+foot_legal:"© 2026 Maison Vie · Bếp trưởng Điều hành Nguyễn Thanh · 30 năm nghệ thuật ẩm thực Pháp · Phục vụ Hà Nội từ 2015. Bảo lưu mọi quyền.",
+float_call:"📞 Gọi",float_map:"📍 Chỉ đường",float_reserve:"✦ Đặt bàn",float_wa:"💬 WhatsApp",wa_tooltip:"Đặt bàn nhanh qua WhatsApp",wa_msg:"Xin chào Maison Vie, tôi muốn đặt bàn. Họ tên: ___, Số khách: ___, Ngày: ___, Giờ: ___",
+msg_sending:"Đang gửi…",msg_success:"Cảm ơn bạn! Yêu cầu đặt bàn đã được tiếp nhận.",
+msg_demo:"✓ Chế độ demo — thông tin hợp lệ. Kết nối Supabase để lưu đặt bàn trực tiếp.",msg_error:"Đã có lỗi xảy ra. Vui lòng gọi +84 904 150 383.",msg_invalid_email:"Vui lòng nhập email hợp lệ.",msg_past:"Vui lòng chọn ngày trong tương lai.",
+m_title:"Thư Mời Đã Được Gửi",
+m_body:"Yêu cầu đặt bàn của Quý khách đã được tiếp nhận với sự trân trọng cao nhất. Một Thư mời VIP Kỳ ảo đã được gửi đến email của Quý khách, và quản gia của chúng tôi sẽ liên hệ trong thời gian sớm nhất để xác nhận."
+},
+ja:{
+nav_story:"物語",nav_menu:"シグネチャー",nav_gallery:"ギャラリー",nav_contact:"お問い合わせ",nav_reserve:"予約",
+hero_eyebrow:"ファインダイニング フレンチ — ハノイ",hero_sub:"ハノイの中心で味わう<br>フランス料理の真髄。",hero_cta1:"メニューを見る",hero_cta2:"テーブルを予約",
+story_tag:"物語",story_heading:"30年にわたる<br>フランスの<em>技</em>。",
+story_p1:"28 Tăng Bạt Hổ の優雅なフレンチ・ネオクラシック様式の邸宅にあるMaison Vieは、2015年以来、フランス料理と文化を愛する人々の目的地です。",
+story_p2:"30年の料理経験を持つエグゼクティブ・シェフのもと、すべての料理は古典的なフランス技法とベトナム最高の食材を融合させた精緻な芸術です。",
+story_stat1:"年の経験",story_stat2:"ハノイで創業",story_stat3_num:"2★",story_stat3:"ミシュラン基準",
+sig_tag:"シグネチャー",sig_heading:"私たちを<em>象徴</em>する一皿。",sig_body:"アラカルトの一部をご紹介します。厳選した食材を古典的なフレンチ技法で仕上げ、ソムリエがワインを合わせます。",
+sig_cat_signature:"シグネチャー",sig_cat_main:"メイン",sig_cat_starter:"前菜（冷）",sig_cat_dessert:"デザート",pairing_label:"ワインペアリング",
+sig1_name:"大西洋産スズキとシャンパンキャビア",sig1_desc:"大西洋産スズキのポワレ、柔らかく煮込んだポロネギ、キャビアとシャンパンのエマルジョン。",
+sig2_name:"ベトナム水牛のウェリントン",sig2_desc:"ベトナム水牛、きのこのデュクセル、フーコック胡椒のジュ。",
+sig3_name:"和牛 MBS 6–7",sig3_desc:"極上の和牛MBS 6-7、滑らかな菊芋のピューレ、キオッジャビーツのグラッセ。",
+sig4_name:"北海道産帆立のタルタル",sig4_desc:"北海道産帆立のタルタル、アキテーヌ産キャビア、地元産柚子クリーム、マイクロハーブ。",
+sig5_name:"フォアグラのポワレ",sig5_desc:"フォアグラのポワレ、季節の果実のキャラメリゼ、ポートワインのレダクション。",
+sig6_name:"季節の温製スフレ",sig6_desc:"温かいスフレ（グラン・マルニエ風味）、フーコック産バニラアイス。",
+sig1_local:"Loup de Mer Rôti, Émulsion Champagne au Caviar",sig2_local:"Wellington de Buffle du Vietnam",sig3_local:"Bœuf Wagyu MBS 6–7",sig4_local:"Saint-Jacques en Tartare — Caviar",sig5_local:"Foie Gras Poêlé",sig6_local:"Soufflé Chaud du Moment",sig_cta:"アラカルト全体を見る",
+gal_tag:"空間",gal_heading:"<em>ネオクラシック</em>の邸宅。",
+test_tag:"お客様の声",test_heading:"<em>ゲスト</em>の言葉。",
+test1_text:"素晴らしい料理と、とても温かく行き届いたサービス。テト前夜に開いている数少ないレストランの一つ、ありがたい限りです！",
+test2_text:"上品な料理、美しい盛り付け、申し分のないサービス。繊細なソースの牛リブ、デザートのプロフィトロール — 皆が素晴らしい時間を過ごしました。",
+test3_text:"雰囲気もよく、スタッフがとても機敏にサーブしてくださいました。焼きたてのパンが特に美味しく、ベトナムのフランス料理はまさに絶品でした。",
+test1_source:"ミシュランガイド評価",test2_source:"ゴ・エ・ミヨ ガイド",test3_source:"レ・グランド・ターブル・デュ・モンド",
+res_tag:"予約",res_heading:"<em>テーブル</em>を予約。",res_body:"忘れられないお食事のひとときをご用意いたします。48時間前までのご予約をお勧めします。",
+f_name:"お名前",f_phone:"電話番号",f_email:"メール",f_guests:"人数",f_date:"日付",f_time:"時間",f_dietary:"食事制限・アレルギー",f_notes:"その他のご要望",f_submit:"予約をリクエスト",
+f_seating:"お席のご希望",f_purpose:"ご利用目的",
+seat_standard:"スタンダード一般ダイニング（1階）",seat_private:"個室VIPルーム（空室状況による、2階）",seat_window:"大型マルチファンクションルーム（3階）",
+purp_dining:"お食事の愉しみ",purp_business:"ご接待・ビジネス会食",purp_anniversary:"記念日・お誕生日のお祝い",purp_proposal:"プロポーズ 💍",
+d_veg:"ベジタリアン",d_vegan:"ヴィーガン",d_gluten:"グルテンフリー",d_seafood:"魚介アレルギー",d_nut:"ナッツアレルギー",d_halal:"ハラル",
+guests_one:"名",guests_many:"名",guests_over:"20名以上 — お電話ください",time_lunch:"ランチ",time_dinner:"ディナー",time_choose:"時間を選択",guests_choose:"人数を選択",
+i_address:"住所",i_contact:"連絡先",i_hotline:"ホットライン",i_tel:"電話",i_mobile:"携帯",i_hours:"営業時間",i_hours_text:"毎日 10:00 – 22:00",
+foot_tagline:"ハノイの中心で味わうフランス料理 of フレンチ 真髄",foot_review:"Googleでレビューを残す",
+foot_legal:"© 2026 Maison Vie · エグゼクティブ・シェフ グエン・タイン · フレンチ料理歴30年 · 2015年創業。All rights reserved.",
+float_call:"📞 電話",float_map:"📍 道案内",float_reserve:"✦ 予約",float_wa:"💬 WhatsApp",wa_tooltip:"WhatsAppで簡単予約",wa_msg:"Maison Vie様、予約をお願いします。お名前：___、人数：___、日付：___、時間：___",
+msg_sending:"送信中…",msg_success:"ありがとうございます！ご予約リクエストを受け付けました。",
+msg_demo:"✓ デモモード — 入力は有効です。Supabaseを接続すると予約が保存されます。",msg_error:"エラーが発生しました。+84 904 150 383 までお電話ください。",msg_invalid_email:"有効なメールアドレスを入力してください。",msg_past:"未来の日付を選択してください。",
+m_title:"招待状を発送いたしました",
+m_body:"ご予約リクエストを謹んでお受けいたしました。ご指定のメールアドレスへVIPデジタル招待状をお送りいたしました。コンシェルジュよりまもなくご連絡を差し上げます。"
+}
+};
+
+let currentLang = "en";
+
+/* ===== APPLY LANGUAGE ===== */
+function applyLang(lang){
+  currentLang = lang;
+  const t = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(t[key]!==undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll(".lang-btn").forEach(b=>{
+    b.classList.toggle("active", b.dataset.lang===lang);
+  });
+  buildGuests(lang);
+  buildTimes(lang, activeFullyBookedSlots);
+  buildSeating(lang);
+  buildPurpose(lang);
+  buildWhatsApp(lang);
+}
+
+/* ===== BUILD WHATSAPP LINKS (pre-filled message per language) ===== */
+const WA_NUMBER = "84904150383"; // +84 904 150 383, no plus/spaces for wa.me
+function buildWhatsApp(lang){
+  const msg = encodeURIComponent(I18N[lang].wa_msg);
+  const url = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+  const f = document.getElementById("waFloat");
+  const m = document.getElementById("waMobile");
+  if(f) f.href = url;
+  if(m) m.href = url;
+}
+
+/* ===== BUILD GUESTS DROPDOWN (1–20) ===== */
+function buildGuests(lang){
+  const t = I18N[lang], sel = document.getElementById("f_guests");
+  const prev = sel.value;
+  sel.innerHTML = `<option value="" disabled selected>${t.guests_choose}</option>`;
+  for(let i=1;i<=20;i++){
+    const word = i===1? t.guests_one : t.guests_many;
+    sel.innerHTML += `<option value="${i}">${i} ${word}</option>`;
+  }
+  sel.innerHTML += `<option value="20+">${t.guests_over}</option>`;
+  if(prev) sel.value = prev;
+}
+
+/* ===== BUILD TIME DROPDOWN (10:00–22:00 WITH CAPACITY AUTO-BLOCKING) ===== */
+function buildTimes(lang, fullyBookedSlots = []){
+  const t = I18N[lang], sel = document.getElementById("f_time");
+  const prev = sel.value;
+  sel.innerHTML = `<option value="" disabled selected>${t.time_choose}</option>`;
+  
+  let lunch = `<optgroup label="${t.time_lunch} (10:00–14:00)">`;
+  for(let h=10;h<=14;h++){
+    ["00","30"].forEach(m=>{
+      if(h===14&&m==="30") return;
+      const timeVal = `${h}:${m}`;
+      const isFull = fullyBookedSlots.includes(timeVal);
+      const disabledAttr = isFull ? 'disabled style="color:rgba(184,176,160,0.35); text-decoration:line-through;"' : '';
+      const displaySuffix = isFull ? (lang === 'vi' ? ' (Hết chỗ)' : lang === 'ja' ? ' (満席)' : lang === 'fr' ? ' (Complet)' : ' (Full)') : '';
+      lunch += `<option value="${timeVal}" ${disabledAttr}>${timeVal}${displaySuffix}</option>`;
+    });
+  }
+  lunch += `</optgroup>`;
+  
+  let dinner = `<optgroup label="${t.time_dinner} (17:00–22:00)">`;
+  for(let h=17;h<=22;h++){
+    ["00","30"].forEach(m=>{
+      if(h===22&&m==="30") return;
+      const timeVal = `${h}:${m}`;
+      const isFull = fullyBookedSlots.includes(timeVal);
+      const disabledAttr = isFull ? 'disabled style="color:rgba(184,176,160,0.35); text-decoration:line-through;"' : '';
+      const displaySuffix = isFull ? (lang === 'vi' ? ' (Hết chỗ)' : lang === 'ja' ? ' (満席)' : lang === 'fr' ? ' (Complet)' : ' (Full)') : '';
+      dinner += `<option value="${timeVal}" ${disabledAttr}>${timeVal}${displaySuffix}</option>`;
+    });
+  }
+  dinner += `</optgroup>`;
+  
+  sel.innerHTML += lunch + dinner;
+  if(prev && !fullyBookedSlots.includes(prev)) sel.value = prev;
+}
+
+/* ===== BUILD SEATING DROPDOWN ===== */
+function buildSeating(lang){
+  const t = I18N[lang], sel = document.getElementById("f_seating");
+  const prev = sel.value;
+  sel.innerHTML = `
+    <option value="standard" ${!prev ? 'selected' : ''}>${t.seat_standard}</option>
+    <option value="private">${t.seat_private}</option>
+    <option value="window">${t.seat_window}</option>
+  `;
+  if(prev) sel.value = prev;
+}
+
+/* ===== BUILD PURPOSE DROPDOWN ===== */
+function buildPurpose(lang){
+  const t = I18N[lang], sel = document.getElementById("f_purpose");
+  const prev = sel.value;
+  sel.innerHTML = `
+    <option value="fine_dining" ${!prev ? 'selected' : ''}>${t.purp_dining}</option>
+    <option value="business">${t.purp_business}</option>
+    <option value="anniversary">${t.purp_anniversary}</option>
+    <option value="proposal">${t.purp_proposal}</option>
+  `;
+  if(prev) sel.value = prev;
+}
+
+/* ===== SUPABASE CLIENT & STATE ===== */
+let sb = null;
+let activeFullyBookedSlots = [];
+if(SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase){
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+/* ===== SUCCESS MODAL TRIGGERS ===== */
+const sm = document.getElementById("successModal");
+const openSuccessModal = () => sm.classList.add("open");
+const closeSuccessModal = () => sm.classList.remove("open");
+document.getElementById("modalClose").addEventListener("click", closeSuccessModal);
+sm.addEventListener("click", (e) => {
+  if (e.target === sm) closeSuccessModal();
+});
+
+/* ===== FORM SUBMIT ===== */
+document.getElementById("resForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const t = I18N[currentLang];
+  const msg = document.getElementById("formMsg");
+  const btn = document.getElementById("resSubmit");
+  msg.className = "form-msg";
+
+  // Honeypot — silent bot trap
+  if(e.target.company.value){ return; }
+
+  const email = document.getElementById("f_email").value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    msg.className="form-msg error"; msg.textContent=t.msg_invalid_email; 
+    msg.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
+  const dateVal = document.getElementById("f_date").value;
+  if(dateVal && new Date(dateVal) < new Date(new Date().toDateString())){
+    msg.className="form-msg error"; msg.textContent=t.msg_past; 
+    msg.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
+
+  const dietary = Array.from(document.querySelectorAll('input[name="dietary"]:checked')).map(c=>c.value);
+  const payload = {
+    name: document.getElementById("f_name").value.trim(),
+    email: email,
+    phone: document.getElementById("f_phone").value.trim(),
+    guests: parseInt(document.getElementById("f_guests").value) || 21,
+    res_date: dateVal,
+    res_time: document.getElementById("f_time").value,
+    seating_preference: document.getElementById("f_seating").value,
+    purpose: document.getElementById("f_purpose").value,
+    dietary: dietary,
+    notes: document.getElementById("f_notes").value.trim(),
+    language: currentLang
+  };
+
+  btn.disabled = true; btn.textContent = t.msg_sending;
+
+  try{
+    if(sb){
+      const { error } = await sb.from("reservations").insert([payload]);
+      if(error) throw error;
+      
+      openSuccessModal();
+      e.target.reset(); 
+      activeFullyBookedSlots = [];
+      buildGuests(currentLang); 
+      buildTimes(currentLang, activeFullyBookedSlots);
+      buildSeating(currentLang);
+      buildPurpose(currentLang);
+    } else {
+      // DEMO MODE — no Supabase keys yet
+      await new Promise(r=>setTimeout(r,700));
+      msg.className="form-msg success"; msg.textContent=t.msg_demo;
+      msg.scrollIntoView({behavior:"smooth",block:"center"});
+      console.log("[DEMO] Reservation payload:", payload);
+      openSuccessModal();
+    }
+  }catch(err){
+    console.error(err);
+    msg.className="form-msg error"; msg.textContent=t.msg_error;
+    msg.scrollIntoView({behavior:"smooth",block:"center"});
+  }finally{
+    btn.disabled=false; btn.textContent=I18N[currentLang].f_submit;
+  }
+});
+
+/* ===== LANG BUTTONS ===== */
+document.querySelectorAll(".lang-btn").forEach(b=>{
+  b.addEventListener("click", ()=>applyLang(b.dataset.lang));
+});
+
+/* ===== DATE MIN = TODAY & CAPACITY AUTO-BLOCKING ===== */
+const dateInput = document.getElementById("f_date");
+dateInput.min = new Date().toISOString().split("T")[0];
+
+dateInput.addEventListener("change", async () => {
+  const dateVal = dateInput.value;
+  if (!dateVal) return;
+  
+  let fullyBookedSlots = [];
+  if (sb) {
+    try {
+      // Dynamic Check using the custom Supabase Postgres RPC function
+      const { data, error } = await sb.rpc('check_slot_capacity', { target_date: dateVal });
+      if (!error && data) {
+        // Threshold: 15 guests maximum per hour slot across active reservations
+        const CAPACITY_LIMIT = 15;
+        data.forEach(slot => {
+          if (parseInt(slot.total_guests) >= CAPACITY_LIMIT) {
+            fullyBookedSlots.push(slot.res_time);
+          }
+        });
+      }
+    } catch(err) {
+      console.error("Auto-blocking capacity engine error:", err);
+    }
+  }
+  
+  activeFullyBookedSlots = fullyBookedSlots;
+  buildTimes(currentLang, activeFullyBookedSlots);
+});
+
+/* ===== NAV SCROLL ===== */
+window.addEventListener("scroll", ()=>{
+  document.getElementById("nav").classList.toggle("scrolled", window.scrollY>60);
+});
+
+/* ===== MOBILE MENU & SMOOTH TRANSITION ===== */
+const mm = document.getElementById("mobileMenu");
+const mo = document.getElementById("menuOverlay");
+const openMenu = () => { mm.classList.add("open"); mo.classList.add("open"); };
+const closeMenu = () => { mm.classList.remove("open"); mo.classList.remove("open"); };
+document.getElementById("navToggle").addEventListener("click", openMenu);
+document.getElementById("mclose").addEventListener("click", closeMenu);
+mo.addEventListener("click", closeMenu);
+mm.querySelectorAll("a").forEach(a=>a.addEventListener("click", closeMenu));
+
+/* ===== REVEAL ON SCROLL ===== */
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("visible"); obs.unobserve(en.target); } });
+  },{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+
+/* ===== PRELOADER ===== */
+window.addEventListener("load", ()=>{ setTimeout(()=>document.getElementById("preloader").classList.add("hide"),500); });
+
+/* ===== INIT ===== */
+applyLang("en");
+</script>
+</body>
+</html>

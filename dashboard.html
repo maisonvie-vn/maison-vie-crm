@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Maison Vie — Reservations CRM Dashboard</title>
+<!-- High-Fidelity Multilingual Web Fonts (Vietnamese Charsets supported) -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C5A55A;
+  --gold-light:#E5D0A3;
+  --dark:#0E0E0C;
+  --card:#161614;
+  --border:#2A2824;
+  --cream:#F5F0E8;
+  --muted:#A09A8C;
+  --dim:#6E6A60;
+  --green:#3E7A4E;
+  --red:#8A3A48;
+  --amber:#9A7A2E;
+}
+body{
+  font-family:'Jost', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background:var(--dark);
+  color:var(--cream);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold)}
+
+/* LOGIN GATE */
+.gate{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:100}
+.gate-box{text-align:center;max-width:340px;width:90%}
+.gate-logo{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;margin-bottom:.5rem}
+.gate-sub{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-bottom:2rem}
+.gate input{width:100%;background:var(--card);border:1px solid var(--border);color:var(--cream);padding:.9rem;font-family:'Jost';font-size:1rem;text-align:center;letter-spacing:.1em}
+.gate input:focus{outline:none;border-color:var(--gold)}
+.gate button{width:100%;margin-top:1rem;background:var(--gold);color:var(--dark);border:none;padding:.9rem;font-family:'Jost';font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;font-weight:500}
+.gate .err{color:#E0909C;font-size:.85rem;margin-top:1rem;min-height:1.2em}
+
+/* APP */
+.app{display:none;max-width:1440px;margin:0 auto;padding:2rem}
+.app.show{display:block}
+header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.h-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold)}
+.h-title span{display:block;font-family:'Jost';font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:.3rem}
+.h-actions{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+.btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:.55rem 1.1rem;font-family:'Jost';font-size:.75rem;letter-spacing:.1em;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn.active{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
+.stat{background:var(--card);border:1px solid var(--border);padding:1.3rem}
+.stat .n{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold)}
+.stat .l{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-top:.3rem}
+
+/* FILTERS */
+.filters{display:flex;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center}
+.filters input[type=date]{background:var(--card);border:1px solid var(--border);color:var(--cream);padding:.5rem .8rem;font-family:'Jost';font-size:.85rem}
+.search{flex:1;min-width:200px;background:var(--card);border:1px solid var(--border);color:var(--cream);padding:.55rem .9rem;font-family:'Jost';font-size:.9rem}
+.search:focus{outline:none;border-color:var(--gold)}
+
+/* TABLE */
+.table-wrap{background:var(--card);border:1px solid var(--border);overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:1200px}
+th{text-align:left;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding:1rem;border-bottom:1px solid var(--border);font-weight:500;white-space:nowrap}
+td{padding:1rem;border-bottom:1px solid var(--border);font-size:.92rem;color:var(--cream);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(197,165,90,.04)}
+.guest-name{font-weight:500;font-family:'Playfair Display',serif;font-size:1.05rem}
+.muted{color:var(--muted);font-size:.85rem}
+.diet-tag{display:inline-block;background:rgba(197,165,90,.12);color:var(--gold);font-size:.68rem;padding:.15rem .5rem;margin:.1rem;border-radius:2px;white-space:nowrap}
+.lang-flag{font-size:.7rem;color:var(--dim);text-transform:uppercase}
+
+/* CRM STATUS SELECTORS */
+.crm-select {
+  font-family:'Jost',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:.35rem .6rem;
+  border-radius:4px;
+  background:var(--card);
+  border:1px solid;
+  cursor:pointer;
+  outline:none;
+  font-weight:500;
+  transition:all .3s;
+}
+.crm-select.pending { color:var(--amber); border-color:var(--amber); }
+.crm-select.confirmed { color:#6BC07E; border-color:var(--green); }
+.crm-select.declined { color:#E0909C; border-color:var(--red); }
+.crm-select.rescheduled { color:#5B9BD5; border-color:#3B72A2; }
+
+.empty{text-align:center;padding:4rem;color:var(--dim)}
+.loading{text-align:center;padding:4rem;color:var(--gold)}
+.config-warn{background:rgba(138,58,72,.15);border:1px solid var(--red);color:#E0B0B8;padding:1rem;margin-bottom:1.5rem;font-size:.9rem;line-height:1.5}
+
+/* RESCHEDULE MODAL */
+.modal-wrap {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(8px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:150;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.4s, visibility 0.4s;
+}
+.modal-wrap.open {
+  opacity:1;
+  visibility:visible;
+}
+.modal-card {
+  background:var(--card);
+  border:1px solid var(--gold);
+  padding:2.5rem;
+  max-width:480px;
+  width:90%;
+  border-radius:4px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  text-align:center;
+}
+.modal-card h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;
+  color:var(--gold);
+  margin-bottom:1rem;
+  letter-spacing:0.05em;
+  font-weight:400;
+}
+.modal-card p {
+  font-size:0.88rem;
+  color:var(--muted);
+  margin-bottom:1.5rem;
+  line-height:1.6;
+}
+.modal-card textarea {
+  width:100%;
+  background:var(--dark);
+  border:1px solid var(--border);
+  color:var(--cream);
+  padding:1rem;
+  font-family:'Jost';
+  font-size:0.95rem;
+  resize:none;
+  outline:none;
+  border-radius:3px;
+  margin-bottom:1.5rem;
+}
+.modal-card textarea:focus {
+  border-color:var(--gold);
+}
+.modal-actions {
+  display:flex;
+  gap:1rem;
+  justify-content:center;
+}
+
+@media(max-width:680px){.stats{grid-template-columns:1fr 1fr}.app{padding:1rem}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN GATE -->
+<div class="gate" id="gate">
+<div class="gate-box">
+<div class="gate-logo">Maison Vie</div>
+<div class="gate-sub">Reservations CRM</div>
+<input type="email" id="email" placeholder="Staff Email Address" autocomplete="email" style="margin-bottom: 0.8rem; text-align: left;">
+<input type="password" id="pw" placeholder="Enter password" autocomplete="current-password">
+<button id="loginBtn">Enter</button>
+<div class="err" id="loginErr"></div>
+</div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+<header>
+<div class="h-title">Reservations CRM<span>Maison Vie · Hanoi</span></div>
+<div class="h-actions">
+<button class="btn active" data-filter="all">All</button>
+<button class="btn" data-filter="today">Today</button>
+<button class="btn" data-filter="upcoming">Upcoming</button>
+<button class="btn" id="refreshBtn">↻ Refresh</button>
+<button class="btn" id="exportBtn">⭳ CSV</button>
+<button class="btn" id="logoutBtn">Logout</button>
+</div>
+</header>
+
+<div id="configWarn"></div>
+
+<div class="stats">
+<div class="stat"><div class="n" id="statTotal">—</div><div class="l">Total</div></div>
+<div class="stat"><div class="n" id="statToday">—</div><div class="l">Today</div></div>
+<div class="stat"><div class="n" id="statUpcoming">—</div><div class="l">Upcoming</div></div>
+<div class="stat"><div class="n" id="statGuests">—</div><div class="l">Guests (upcoming)</div></div>
+</div>
+
+<div class="filters">
+<input type="text" class="search" id="search" placeholder="Search name, phone, email, segment…">
+<input type="date" id="dateFrom" title="From date">
+<input type="date" id="dateTo" title="To date">
+</div>
+
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>Date / Time</th><th>Guest CRM Segment</th><th>Contact</th><th>Guests</th><th>Seating</th><th>Occasion</th><th>Dietary</th><th>Notes</th><th>Lang</th><th>CRM Status</th>
+</tr></thead>
+<tbody id="rows"><tr><td colspan="10" class="loading">Loading…</td></tr></tbody>
+</table>
+</div>
+</div>
+
+<!-- CRM RESCHEDULE MODAL -->
+<div class="modal-wrap" id="reschModal">
+  <div class="modal-card">
+    <h3>Propose Reschedule</h3>
+    <p>
+      Please enter suggested alternative slots or remarks. This description will be dynamically delivered in the customer's notification email.
+    </p>
+    <textarea id="reschNotes" placeholder="e.g. 'Chúng tôi xin đề xuất dời giờ sang 19:30 cùng ngày do khung giờ 19:00 đã kín bàn hoàn toàn ở Tầng 1...'"></textarea>
+    <div class="modal-actions">
+      <button class="btn" id="reschCancel" style="flex:1;">Cancel</button>
+      <button class="btn active" id="reschSubmit" style="flex:1;">Send Proposal</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — paste the SAME Supabase credentials as the website
+   ============================================================ */
+const SUPABASE_URL = "";
+const SUPABASE_ANON_KEY = "";
+
+/* ===== STATE ===== */
+let sb = null, allRows = [], activeFilter = "all", activeReschId = null;
+if(SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase){
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+/* ===== LOGIN ===== */
+async function tryLogin(){
+  const email = document.getElementById("email").value.trim();
+  const pw = document.getElementById("pw").value;
+  const errEl = document.getElementById("loginErr");
+  errEl.textContent = "";
+
+  if(!sb) {
+    // Demo mode fallback
+    if(email === "thanhceo.mr@gmail.com" && pw === "@989091383Urmylove@") {
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("app").classList.add("show");
+      initApp();
+    } else {
+      errEl.textContent = "Demo Login: use thanhceo.mr@gmail.com and @989091383Urmylove@";
+    }
+    return;
+  }
+
+  try {
+    const { error } = await sb.auth.signInWithPassword({ email, password: pw });
+    if(error) throw error;
+  } catch(e) {
+    errEl.textContent = "Login failed: " + e.message;
+  }
+}
+document.getElementById("loginBtn").addEventListener("click", tryLogin);
+document.getElementById("pw").addEventListener("keydown", e=>{ if(e.key==="Enter") tryLogin(); });
+document.getElementById("email").addEventListener("keydown", e=>{ if(e.key==="Enter") tryLogin(); });
+
+/* ===== AUTH STATE LISTENER ===== */
+if(sb) {
+  sb.auth.onAuthStateChange((event, session) => {
+    if (session) {
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("app").classList.add("show");
+      initApp();
+    } else {
+      document.getElementById("gate").style.display = "flex";
+      document.getElementById("app").classList.remove("show");
+    }
+  });
+
+  // Self check on load
+  window.addEventListener("DOMContentLoaded", async () => {
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("app").classList.add("show");
+      initApp();
+    }
+  });
+}
+
+/* ===== INIT ===== */
+function initApp(){
+  if(!sb){
+    document.getElementById("configWarn").innerHTML =
+      '<div class="config-warn">⚠ Supabase is not configured. Paste your <b>SUPABASE_URL</b> and <b>SUPABASE_ANON_KEY</b> at the top of this file to load live reservations.</div>';
+    document.getElementById("rows").innerHTML = '<tr><td colspan="10" class="empty">No connection — showing demo data.</td></tr>';
+    allRows = demoData(); render();
+    return;
+  }
+  loadRows();
+}
+
+/* ===== LOAD ===== */
+async function loadRows(){
+  document.getElementById("rows").innerHTML = '<tr><td colspan="10" class="loading">Loading…</td></tr>';
+  try{
+    const { data, error } = await sb.from("reservations").select("*").order("res_date",{ascending:true}).order("res_time",{ascending:true});
+    if(error) throw error;
+    allRows = data || [];
+    render();
+  }catch(e){
+    console.error(e);
+    document.getElementById("rows").innerHTML = `<tr><td colspan="10" class="empty">Error loading: ${e.message}<br><span class="muted">Make sure the SELECT policy is enabled for authenticated users (see supabase-setup.sql).</span></td></tr>`;
+  }
+}
+
+/* ===== FILTER + RENDER ===== */
+function todayStr(){ return new Date().toISOString().split("T")[0]; }
+function getFiltered(){
+  const today = todayStr();
+  const q = document.getElementById("search").value.toLowerCase().trim();
+  const from = document.getElementById("dateFrom").value;
+  const to = document.getElementById("dateTo").value;
+  return allRows.filter(r=>{
+    if(activeFilter==="today" && r.res_date!==today) return false;
+    if(activeFilter==="upcoming" && r.res_date<today) return false;
+    if(from && r.res_date<from) return false;
+    if(to && r.res_date>to) return false;
+    if(q){
+      const hay = `${r.name} ${r.phone} ${r.email} ${r.seating_preference} ${r.purpose} ${r.customer_segment}`.toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+function render(){
+  const today = todayStr();
+  // stats
+  document.getElementById("statTotal").textContent = allRows.length;
+  document.getElementById("statToday").textContent = allRows.filter(r=>r.res_date===today).length;
+  const up = allRows.filter(r=>r.res_date>=today && r.status!=="cancelled" && r.status!=="declined");
+  document.getElementById("statUpcoming").textContent = up.length;
+  document.getElementById("statGuests").textContent = up.reduce((s,r)=>s+(parseInt(r.guests)||0),0);
+
+  const rows = getFiltered();
+  const tb = document.getElementById("rows");
+  if(!rows.length){ tb.innerHTML = '<tr><td colspan="10" class="empty">No reservations match.</td></tr>'; return; }
+  tb.innerHTML = rows.map(r=>{
+    const diet = (Array.isArray(r.dietary)?r.dietary:[]).map(d=>`<span class="diet-tag">${esc(d)}</span>`).join("") || '<span class="muted">—</span>';
+    const st = r.status || "pending";
+    
+    // Nice labels for seating and purpose
+    const seatingLabel = r.seating_preference === 'private' ? 'Private Room (2nd Floor)' 
+                       : r.seating_preference === 'window' ? 'Big Function Room (3rd Floor)' 
+                       : 'Standard Public Dining (1st Floor)';
+                       
+    const purposeLabel = r.purpose === 'business' ? 'Business VIP'
+                       : r.purpose === 'anniversary' ? 'Anniversary'
+                       : r.purpose === 'proposal' ? 'Proposal 💍'
+                       : 'Fine Dining';
+
+    // Premium VIP segmentation indicators
+    let segmentIndicator = "";
+    if (r.customer_segment === "VIP") {
+      segmentIndicator = `<br><span style="display:inline-block; margin-top:0.25rem; font-size:0.65rem; color:#C5A55A; border:1px solid #C5A55A; padding:0.1rem 0.4rem; border-radius:20px; font-weight:600; letter-spacing:0.05em;">👑 VIP CUSTOMER</span>`;
+    } else if (r.customer_segment === "Premium") {
+      segmentIndicator = `<br><span style="display:inline-block; margin-top:0.25rem; font-size:0.65rem; color:#E5D0A3; border:1px solid #E5D0A3; padding:0.1rem 0.4rem; border-radius:20px; font-weight:600; letter-spacing:0.05em;">✦ PREMIUM</span>`;
+    }
+
+    return `<tr>
+      <td><b>${esc(r.res_date||"")}</b><br><span class="muted">${esc(r.res_time||"")}</span></td>
+      <td class="guest-name"><b>${esc(r.name||"")}</b>${segmentIndicator}</td>
+      <td><a href="tel:${esc(r.phone||"")}">${esc(r.phone||"")}</a><br><span class="muted">${esc(r.email||"")}</span></td>
+      <td><b>${esc(String(r.guests||""))}</b></td>
+      <td><span class="muted" style="font-weight: 500;">${esc(seatingLabel)}</span></td>
+      <td><span class="muted" style="font-weight: 500;">${esc(purposeLabel)}</span></td>
+      <td>${diet}</td>
+      <td class="muted">
+        ${esc(r.notes||"—")}
+        ${r.reschedule_notes ? `<br><div style="margin-top:4px; font-size:0.8rem; color:#5B9BD5;"><i>Suggested: "${esc(r.reschedule_notes)}"</i></div>` : ""}
+      </td>
+      <td class="lang-flag">${esc(r.language||"en")}</td>
+      <td>
+        <select class="crm-select ${st}" data-id="${r.id}">
+          <option value="pending" ${st === 'pending' ? 'selected' : ''}>Pending</option>
+          <option value="confirmed" ${st === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+          <option value="declined" ${st === 'declined' ? 'selected' : ''}>Declined</option>
+          <option value="rescheduled" ${st === 'rescheduled' ? 'selected' : ''}>Rescheduled</option>
+        </select>
+      </td>
+    </tr>`;
+  }).join("");
+
+  // Wire event handlers to dropdowns
+  tb.querySelectorAll(".crm-select").forEach(select => {
+    select.addEventListener("change", handleStatusChange);
+  });
+}
+
+/* ===== CRM STATE MANAGEMENT INTERFACES ===== */
+async function handleStatusChange(e) {
+  const select = e.target;
+  const id = select.dataset.id;
+  const newStatus = select.value;
+
+  if (newStatus === "rescheduled") {
+    activeReschId = id;
+    openReschModal();
+  } else {
+    await saveStatus(id, newStatus, null);
+  }
+}
+
+function openReschModal() {
+  const modal = document.getElementById("reschModal");
+  document.getElementById("reschNotes").value = "";
+  modal.classList.add("open");
+}
+
+function closeReschModal() {
+  const modal = document.getElementById("reschModal");
+  modal.classList.remove("open");
+  activeReschId = null;
+  // Reload rows to reset select state in case cancel
+  loadRows();
+}
+
+async function submitReschedule() {
+  const notes = document.getElementById("reschNotes").value.trim();
+  if (!notes) {
+    alert("Please enter reschedule notes / alternative options for the guest.");
+    return;
+  }
+  const id = activeReschId;
+  closeReschModal();
+  await saveStatus(id, "rescheduled", notes);
+}
+
+async function saveStatus(id, status, rescheduleNotes) {
+  if(!sb){ // Demo Mode
+    const row = allRows.find(r=>String(r.id)===String(id));
+    if(row) {
+      row.status = status;
+      if (rescheduleNotes !== null) row.reschedule_notes = rescheduleNotes;
+    }
+    render();
+    return;
+  }
+
+  try {
+    const updateData = { status };
+    if (rescheduleNotes !== null) {
+      updateData.reschedule_notes = rescheduleNotes;
+    }
+    const { error } = await sb.from("reservations").update(updateData).eq("id", id);
+    if(error) throw error;
+    
+    const row = allRows.find(r=>String(r.id)===String(id));
+    if(row) {
+      row.status = status;
+      if (rescheduleNotes !== null) row.reschedule_notes = rescheduleNotes;
+    }
+    render();
+  } catch(e) {
+    alert("Status update failed: " + e.message);
+    loadRows();
+  }
+}
+
+// Modal Buttons wiring
+document.getElementById("reschCancel").addEventListener("click", closeReschModal);
+document.getElementById("reschSubmit").addEventListener("click", submitReschedule);
+
+/* ===== CSV EXPORT ===== */
+function exportCSV(){
+  const rows = getFiltered();
+  const head = ["Date","Time","Name","Phone","Email","Guests","Seating Preference","Occasion","Dietary","Notes","Language","Status","Segment","Reschedule Notes"];
+  const lines = [head.join(",")];
+  rows.forEach(r=>{
+    const cells = [r.res_date,r.res_time,r.name,r.phone,r.email,r.guests,r.seating_preference,r.purpose,(r.dietary||[]).join("; "),r.notes,r.language,r.status,r.customer_segment,r.reschedule_notes]
+      .map(c=>`"${String(c??"").replace(/"/g,'""')}"`);
+    lines.push(cells.join(","));
+  });
+  const blob = new Blob([lines.join("\n")],{type:"text/csv"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `maison-vie-reservations-${todayStr()}.csv`;
+  a.click();
+}
+
+/* ===== EVENTS ===== */
+document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click", ()=>{
+  document.querySelectorAll("[data-filter]").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active"); activeFilter = b.dataset.filter; render();
+}));
+document.getElementById("search").addEventListener("input", render);
+document.getElementById("dateFrom").addEventListener("change", render);
+document.getElementById("dateTo").addEventListener("change", render);
+document.getElementById("refreshBtn").addEventListener("click", ()=>{ if(sb) loadRows(); });
+document.getElementById("exportBtn").addEventListener("click", exportCSV);
+document.getElementById("logoutBtn").addEventListener("click", async ()=>{
+  if(sb) {
+    await sb.auth.signOut();
+  } else {
+    location.reload();
+  }
+});
+
+/* ===== HELPERS ===== */
+function esc(s){ return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function demoData(){
+  const t = todayStr();
+  return [
+    {id:1,res_date:t,res_time:"19:00",name:"Nguyễn Văn A",phone:"+84901234567",email:"a@example.com",guests:4,seating_preference:"private",purpose:"business",dietary:["vegetarian"],notes:"Yêu cầu phòng kính riêng biệt lý tưởng tiếp khách thương mại",language:"vi",status:"confirmed",customer_segment:"VIP",reschedule_notes:null},
+    {id:2,res_date:t,res_time:"20:30",name:"Smith John",phone:"+84907654321",email:"john@example.com",guests:2,seating_preference:"window",purpose:"anniversary",dietary:["seafood_allergy","nut_allergy"],notes:"Anniversary dinner request window table, champagne pre-ordered",language:"en",status:"pending",customer_segment:"Premium",reschedule_notes:null},
+    {id:3,res_date:"2026-12-31",res_time:"18:00",name:"田中 太郎",phone:"+84909999888",email:"tanaka@example.jp",guests:6,seating_preference:"standard",purpose:"fine_dining",dietary:[],notes:"New year eve dinner with family",language:"ja",status:"pending",customer_segment:"Standard",reschedule_notes:null}
+  ];
+}
+</script>
+</body>
+</html>
