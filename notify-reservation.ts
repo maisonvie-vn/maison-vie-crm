@@ -45,13 +45,13 @@ const VIP_I18N: Record<string, Record<string, any>> = {
     pending: {
       subject: "Maison Vie — Your Invitation to Le Voyage",
       title: "An Invitation to Le Voyage",
-      body: "We are delighted to receive your reservation request at Maison Vie. Our culinary team, led by Executive Chef Nguyen Thanh, is already preparing to welcome you for an unforgettable dining experience.",
+      body: "We are delighted to receive your reservation request at Maison Vie. Our culinary team, led by Chef Joel, is already preparing to welcome you for an unforgettable dining experience.",
       note: "Please note that our host will contact you shortly via phone or WhatsApp to finalize your preferences and confirm your reservation."
     },
     confirmed: {
       subject: "Maison Vie — Your Gastronomic Journey is Confirmed!",
       title: "Your Reservation is Confirmed",
-      body: "We are absolutely delighted to confirm your upcoming reservation at Maison Vie. Executive Chef Nguyen Thanh and our service artisans look forward to welcoming you for an exceptional neoclassical French dining experience.",
+      body: "We are absolutely delighted to confirm your upcoming reservation at Maison Vie. Chef Joel and our service artisans look forward to welcoming you for an exceptional neoclassical French dining experience.",
       note: "Your priority table is secured. If you need any bespoke adjustments, please feel free to reach out directly to our concierge team."
     },
     declined: {
@@ -69,7 +69,7 @@ const VIP_I18N: Record<string, Record<string, any>> = {
     reminder: {
       subject: "Maison Vie — A Gentle Reminder of Your Dining Invitation",
       title: "Your Gastronomic Journey Awaits",
-      body: "This is a gentle reminder that we look forward to welcoming you to Maison Vie in a few hours. Executive Chef Nguyen Thanh and our artisans have prepared everything to make your dining experience truly exceptional.",
+      body: "This is a gentle reminder that we look forward to welcoming you to Maison Vie in a few hours. Chef Joel and our artisans have prepared everything to make your dining experience truly exceptional.",
       note: "If you have any last-minute delays or special requests, please call or text our hotline immediately."
     },
     dateLabel: "Date",
@@ -86,13 +86,13 @@ const VIP_I18N: Record<string, Record<string, any>> = {
     pending: {
       subject: "Maison Vie — Votre Invitation pour Le Voyage",
       title: "Une Invitation pour Le Voyage",
-      body: "Nous sommes enchantés de recevoir votre demande de réservation chez Maison Vie. Notre équipe culinaire, sous la direction de Chef Exécutif Nguyen Thanh, se prépare déjà à vous accueillir pour une expérience gastronomique inoubliable.",
+      body: "Nous sommes enchantés de recevoir votre demande de réservation chez Maison Vie. Notre équipe culinaire, sous la direction de Chef Joel, se prépare déjà à vous accueillir pour une expérience gastronomique inoubliable.",
       note: "Veuillez noter que notre hôte vous contactera sous peu par téléphone ou WhatsApp pour finaliser vos préférences et confirmer votre réservation."
     },
     confirmed: {
       subject: "Maison Vie — Votre Voyage Gastronomique est Confirmé !",
       title: "Votre Réservation est Confirmée",
-      body: "Nous sommes enchantés de confirmer votre réservation chez Maison Vie. Le Chef Exécutif Nguyen Thanh et notre équipe d'artisans de table se réjouissent de vous accueillir pour une expérience culinaire d'exception.",
+      body: "Nous sommes enchantés de confirmer votre réservation chez Maison Vie. Le Chef Joel et notre équipe d'artisans de table se réjouissent de vous accueillir pour une expérience culinaire d'exception.",
       note: "Votre table prioritaire est réservée. Pour tout ajustement sur mesure, n'hésitez pas à contacter notre équipe de conciergerie."
     },
     declined: {
@@ -127,13 +127,13 @@ const VIP_I18N: Record<string, Record<string, any>> = {
     pending: {
       subject: "Maison Vie — Thư Mời Hành Trình \"Le Voyage\"",
       title: "Thư Mời Hành Trình Le Voyage",
-      body: "Maison Vie trân trọng cảm ơn yêu cầu đặt bàn của Quý khách cho hành trình khám phá tinh hoa ẩm thực Pháp. Đội ngũ phục vụ và Bếp trưởng Nguyễn Thanh của chúng tôi đang chuẩn bị những chuẩn mực cao nhất để mang lại cho Quý khách một buổi tối trọn vẹn.",
+      body: "Maison Vie trân trọng cảm ơn yêu cầu đặt bàn của Quý khách cho hành trình khám phá tinh hoa ẩm thực Pháp. Đội ngũ phục vụ và Bếp trưởng Joel của chúng tôi đang chuẩn bị những chuẩn mực cao nhất để mang lại cho Quý khách một buổi tối trọn vẹn.",
       note: "Quản gia của chúng tôi sẽ liên hệ trực tiếp với Quý khách qua Điện thoại hoặc WhatsApp trong thời gian sớm nhất để hoàn tất chuẩn bị."
     },
     confirmed: {
       subject: "Maison Vie — Xác Nhận Hành Trình Ẩm Thực Pháp!",
       title: "Đặt Bàn Đã Được Xác Nhận",
-      body: "Maison Vie trân trọng thông báo yêu cầu đặt bàn của Quý khách đã được xác nhận chính thức. Bếp trưởng Nguyễn Thanh và đội ngũ quản gia đang hoàn tất khâu chuẩn bị cao cấp nhất để đón tiếp Quý khách.",
+      body: "Maison Vie trân trọng thông báo yêu cầu đặt bàn của Quý khách đã được xác nhận chính thức. Bếp trưởng Joel và đội ngũ quản gia đang hoàn tất khâu chuẩn bị cao cấp nhất để đón tiếp Quý khách.",
       note: "Vị trí đẹp nhất đã được dành riêng cho bạn. Nếu cần thêm các dịch vụ đặc biệt (trang trí, hoa tươi, nhạc...), xin hãy liên hệ quản gia."
     },
     declined: {
@@ -151,7 +151,7 @@ const VIP_I18N: Record<string, Record<string, any>> = {
     reminder: {
       subject: "Maison Vie — Thư Nhắc Hẹn Hành Trình Ẩm Thực Pháp",
       title: "Hành Trình Ẩm Thực Sắp Bắt Đầu",
-      body: "Maison Vie trân trọng nhắc lịch hẹn đón tiếp Quý khách tại nhà hàng trong ít giờ tới. Đội ngũ quản gia và Bếp trưởng Nguyễn Thanh của chúng tôi đã hoàn tất chuẩn bị để mang đến cho bạn trải nghiệm tuyệt vời nhất.",
+      body: "Maison Vie trân trọng nhắc lịch hẹn đón tiếp Quý khách tại nhà hàng trong ít giờ tới. Đội ngũ quản gia và Bếp trưởng Joel của chúng tôi đã hoàn tất chuẩn bị để mang đến cho bạn trải nghiệm tuyệt vời nhất.",
       note: "Nếu Quý khách có thay đổi về thời gian hoặc yêu cầu phát sinh, xin vui lòng gọi ngay hotline để chúng tôi hỗ trợ kịp thời."
     },
     dateLabel: "Ngày",
@@ -168,13 +168,13 @@ const VIP_I18N: Record<string, Record<string, any>> = {
     pending: {
       subject: "Maison Vie — 「Le Voyage」へのご招待",
       title: "Le Voyage へのご招待",
-      body: "Maison Vie へのご予約リクエストをいただき、誠にありがとうございます。エグゼクティブ・シェフ グエン・タイン率いる料理チームは、お客様に忘れられない美食体験をお届けするため、すでに準備を進めております。",
+      body: "Maison Vie へのご予約リクエストをいただき、誠にありがとうございます。シェフ・ジョエル率いる料理チームは、お客様に忘れられない美食体験をお届けするため、すでに準備を進めております。",
       note: "コンシェルジュ担当より、お席の確認とお好みの詳細について、まもなくお電話またはWhatsAppにてご連絡を差し上げます。"
     },
     confirmed: {
       subject: "Maison Vie — ご予約確定のお知らせ",
       title: "ご予約が確定いたしました",
-      body: "Maison Vie でのご予約が正式に確定いたしました。エグゼクティブ・シェフ グエン・タインとサービススタッフ一同、お客様のご来訪を最高の状態でお迎えするため、心より準備を進めております。",
+      body: "Maison Vie でのご予約が正式に確定いたしました。シェフ・ジョエルとサービススタッフ一同、お客様のご来訪を最高の状態でお迎えするため、心より準備を進めております。",
       note: "特等席をご用意いたしました。特別なご要望がございましたら、コンシェルジュまでお気軽にお申し付けください。"
     },
     declined: {
