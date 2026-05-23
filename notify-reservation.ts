@@ -78,6 +78,7 @@ const VIP_I18N: Record<string, Record<string, any>> = {
     seatingLabel: "Seating Preference",
     occasionLabel: "Special Occasion",
     statusLabel: "Reservation Status",
+    greeting: "Dear {name},",
     signature: "Warm regards,",
     signer: "The Concierge Team<br>Maison Vie Hanoi"
   },
@@ -118,6 +119,7 @@ const VIP_I18N: Record<string, Record<string, any>> = {
     seatingLabel: "Préférence de Table",
     occasionLabel: "Occasion",
     statusLabel: "Statut",
+    greeting: "Cher(e) {name},",
     signature: "Cordialement,",
     signer: "L'Équipe de Conciergerie<br>L'Équipe Maison Vie Hanoï"
   },
@@ -158,6 +160,7 @@ const VIP_I18N: Record<string, Record<string, any>> = {
     seatingLabel: "Vị Trí Ưu Thích",
     occasionLabel: "Dịp Đặc Biệt",
     statusLabel: "Trạng Thế",
+    greeting: "Kính gửi Quý khách {name},",
     signature: "Trân trọng,",
     signer: "Đội Ngũ Concierge<br>Maison Vie Hà Nội"
   },
@@ -198,6 +201,7 @@ const VIP_I18N: Record<string, Record<string, any>> = {
     seatingLabel: "お席のご希望",
     occasionLabel: "ご利用目的",
     statusLabel: "ステータス",
+    greeting: "{name} 様,",
     signature: "敬具",
     signer: "コンシェルジュチーム一同<br>Maison Vie ハノイ"
   }

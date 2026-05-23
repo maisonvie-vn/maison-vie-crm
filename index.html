@@ -73,6 +73,90 @@ nav.scrolled{padding:.7rem 2.5rem;background:rgba(10,10,10,0.92);border-bottom:1
 .lang-btn{background:none;border:none;color:var(--cream-dim);font-family:var(--sans);font-size:.72rem;letter-spacing:.05em;cursor:pointer;padding:.2rem .35rem;transition:color .3s}
 .lang-btn:hover{color:var(--gold-pale)}
 .lang-btn.active{color:var(--gold);font-weight:500}
+
+/* PREMIUM LANGUAGE DROPDOWN (DESKTOP) */
+.lang-dropdown {
+  position: relative;
+  display: inline-block;
+  border-left: 1px solid var(--dark-border);
+  padding-left: 1rem;
+}
+.lang-active-btn {
+  background: transparent;
+  border: 1px solid rgba(197, 165, 90, 0.20);
+  border-radius: 4px;
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  cursor: pointer;
+  padding: .4rem .8rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  transition: all .3s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.lang-active-btn:hover {
+  border-color: var(--gold);
+  background: rgba(197, 165, 90, 0.05);
+}
+.lang-chevron {
+  transition: transform 0.3s ease;
+  stroke: var(--gold);
+}
+.lang-dropdown:hover .lang-chevron {
+  transform: rotate(180deg);
+}
+.lang-dropdown-content {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: rgba(22, 22, 20, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 165, 90, 0.2);
+  border-radius: 6px;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: .4rem;
+  gap: .2rem;
+  z-index: 110;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.lang-dropdown:hover .lang-dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.lang-dropdown-content .lang-btn {
+  text-align: left;
+  width: 100%;
+  padding: .45rem .6rem;
+  border-radius: 4px;
+  color: var(--cream-muted);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.lang-dropdown-content .lang-btn:hover {
+  background: rgba(197, 165, 90, 0.08);
+  color: var(--gold-pale);
+}
+.lang-dropdown-content .lang-btn.active {
+  background: rgba(197, 165, 90, 0.15);
+  color: var(--gold);
+  font-weight: 500;
+}
 .nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:.55rem 1.5rem;font-family:var(--sans);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .4s;white-space:nowrap}
 .nav-cta:hover{background:var(--gold);color:var(--dark);box-shadow:0 0 15px rgba(197,165,90,0.3)}
 .nav-toggle{display:none;background:none;border:none;color:var(--gold);font-size:1.6rem;cursor:pointer;line-height:1}
@@ -184,7 +268,67 @@ section{padding:6.5rem 2rem}
 filter: invert(74%) sepia(21%) saturate(969%) hue-rotate(6deg) brightness(89%) contrast(85%);
 cursor: pointer;
 }
-.dietary-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+/* PREMIUM DIETARY DROPDOWN */
+.dietary-dropdown {
+  position: relative;
+  width: 100%;
+}
+.dietary-dropdown-btn {
+  background: var(--dark);
+  border: 1px solid var(--dark-border);
+  color: var(--cream);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  padding: .8rem .9rem;
+  transition: border-color .3s, box-shadow .3s;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dietary-dropdown-btn:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(197, 165, 90, 0.15);
+}
+.dietary-chevron {
+  transition: transform 0.3s ease;
+  stroke: var(--gold);
+  flex-shrink: 0;
+}
+.dietary-dropdown:hover .dietary-chevron,
+.dietary-dropdown.open .dietary-chevron {
+  transform: rotate(180deg);
+}
+.dietary-dropdown-content {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background: rgba(22, 22, 20, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 165, 90, 0.2);
+  border-radius: 4px;
+  padding: 1rem;
+  z-index: 120;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+}
+.dietary-dropdown:hover .dietary-dropdown-content,
+.dietary-dropdown.open .dietary-dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 .diet-check{display:flex;align-items:center;gap:.6rem;font-family:var(--serif);font-size:1.02rem;color:var(--cream-muted);cursor:pointer;padding:.4rem 0;transition:color 0.3s}
 .diet-check:hover{color:var(--gold-pale)}
 .diet-check input{width:18px;height:18px;accent-color:var(--gold);cursor:pointer;flex-shrink:0}
@@ -322,11 +466,17 @@ section{padding:4.5rem 1.3rem}
 <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
 <a href="#reserve" data-i18n="nav_contact">Contact</a>
 </div>
-<div class="lang-switch">
+<div class="lang-dropdown">
+<button class="lang-active-btn" id="langActiveBtn">
+<span class="lang-text">EN</span>
+<svg class="lang-chevron" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</button>
+<div class="lang-dropdown-content">
 <button class="lang-btn active" data-lang="en">EN</button>
 <button class="lang-btn" data-lang="fr">FR</button>
 <button class="lang-btn" data-lang="vi">VI</button>
 <button class="lang-btn" data-lang="ja">日本語</button>
+</div>
 </div>
 <button class="nav-cta" onclick="document.getElementById('reserve').scrollIntoView({behavior:'smooth'})" data-i18n="nav_reserve">Reserve</button>
 <button class="nav-toggle" id="navToggle">☰</button>
@@ -382,7 +532,6 @@ section{padding:4.5rem 1.3rem}
 <div class="story-stats">
 <div class="story-stat"><div class="num">30</div><div class="label" data-i18n="story_stat1">Years of Expertise</div></div>
 <div class="story-stat"><div class="num">2015</div><div class="label" data-i18n="story_stat2">Serving Hanoi Since</div></div>
-<div class="story-stat"><div class="num" data-i18n="story_stat3_num">2★</div><div class="label" data-i18n="story_stat3">Michelin Standards</div></div>
 </div>
 </div>
 <div class="story-imgs">
@@ -576,13 +725,19 @@ section{padding:4.5rem 1.3rem}
 </div>
 <div class="field">
 <label data-i18n="f_dietary">Dietary / Allergies</label>
-<div class="dietary-grid">
-<label class="diet-check"><input type="checkbox" name="dietary" value="vegetarian"><span data-i18n="d_veg">Vegetarian</span></label>
-<label class="diet-check"><input type="checkbox" name="dietary" value="vegan"><span data-i18n="d_vegan">Vegan</span></label>
-<label class="diet-check"><input type="checkbox" name="dietary" value="gluten_free"><span data-i18n="d_gluten">Gluten-free</span></label>
-<label class="diet-check"><input type="checkbox" name="dietary" value="seafood_allergy"><span data-i18n="d_seafood">Seafood allergy</span></label>
-<label class="diet-check"><input type="checkbox" name="dietary" value="nut_allergy"><span data-i18n="d_nut">Nut allergy</span></label>
-<label class="diet-check"><input type="checkbox" name="dietary" value="halal"><span data-i18n="d_halal">Halal</span></label>
+<div class="dietary-dropdown">
+  <button type="button" class="dietary-dropdown-btn" id="dietaryBtn">
+    <span class="dietary-btn-text" id="dietaryBtnText" data-i18n="d_select">Select options</span>
+    <svg class="dietary-chevron" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </button>
+  <div class="dietary-dropdown-content">
+    <label class="diet-check"><input type="checkbox" name="dietary" value="vegetarian"><span data-i18n="d_veg">Vegetarian</span></label>
+    <label class="diet-check"><input type="checkbox" name="dietary" value="vegan"><span data-i18n="d_vegan">Vegan</span></label>
+    <label class="diet-check"><input type="checkbox" name="dietary" value="gluten_free"><span data-i18n="d_gluten">Gluten-free</span></label>
+    <label class="diet-check"><input type="checkbox" name="dietary" value="seafood_allergy"><span data-i18n="d_seafood">Seafood allergy</span></label>
+    <label class="diet-check"><input type="checkbox" name="dietary" value="nut_allergy"><span data-i18n="d_nut">Nut allergy</span></label>
+    <label class="diet-check"><input type="checkbox" name="dietary" value="halal"><span data-i18n="d_halal">Halal</span></label>
+  </div>
 </div>
 </div>
 <div class="field">
@@ -692,7 +847,7 @@ f_name:"Full Name",f_phone:"Phone",f_email:"Email",f_guests:"Guests",f_date:"Dat
 f_seating:"Seating Preference",f_purpose:"Special Occasion",
 seat_standard:"Standard Public Dining Room (1st Floor)",seat_private:"Private Dining Room (Subject to Availability, 2nd Floor)",seat_window:"Big Function Room (3rd Floor)",
 purp_dining:"Culinary Appreciation",purp_business:"Business & VIP Entertainment",purp_anniversary:"Anniversary / Birthday Celebration",purp_proposal:"Marriage Proposal 💍",
-d_veg:"Vegetarian",d_vegan:"Vegan",d_gluten:"Gluten-free",d_seafood:"Seafood allergy",d_nut:"Nut allergy",d_halal:"Halal",
+d_veg:"Vegetarian",d_vegan:"Vegan",d_gluten:"Gluten-free",d_seafood:"Seafood allergy",d_nut:"Nut allergy",d_halal:"Halal",d_select:"Select options",
 guests_one:"guest",guests_many:"guests",guests_over:"Over 20 — please call us",time_lunch:"Lunch",time_dinner:"Dinner",time_choose:"Select a time",guests_choose:"Select guests",
 i_address:"Address",i_contact:"Contact",i_hotline:"Hotline",i_tel:"Tel",i_mobile:"Mobile",i_hours:"Opening Hours",i_hours_text:"Daily: 10:00 – 22:00",
 foot_tagline:"The essence of French cuisine in the heart of Hanoi",foot_review:"Leave us a review on Google",
@@ -730,7 +885,7 @@ f_name:"Nom Complet",f_phone:"Téléphone",f_email:"Email",f_guests:"Convives",f
 f_seating:"Préférence de Table",f_purpose:"Occasion Spéciale",
 seat_standard:"Salle à Manger Publique Standard (1er Étage)",seat_private:"Salon Privé (Sous réserve de disponibilité, 2ème Étage)",seat_window:"Grande Salle de Réception (3ème Étage)",
 purp_dining:"Appréciation Gastronomique",purp_business:"Repas d'Affaires & VIP",purp_anniversary:"Célébration d'Anniversaire",purp_proposal:"Demande en Mariage 💍",
-d_veg:"Végétarien",d_vegan:"Végétalien",d_gluten:"Sans gluten",d_seafood:"Allergie fruits de mer",d_nut:"Allergie aux noix",d_halal:"Halal",
+d_veg:"Végétarien",d_vegan:"Végétalien",d_gluten:"Sans gluten",d_seafood:"Allergie fruits de mer",d_nut:"Allergie aux noix",d_halal:"Halal",d_select:"Sélectionner",
 guests_one:"convive",guests_many:"convives",guests_over:"Plus de 20 — appelez-nous",time_lunch:"Déjeuner",time_dinner:"Dîner",time_choose:"Choisir une heure",guests_choose:"Choisir",
 i_address:"Adresse",i_contact:"Contact",i_hotline:"Hotline",i_tel:"Tél",i_mobile:"Mobile",i_hours:"Horaires",i_hours_text:"Tous les jours : 10h00 – 22h00",
 foot_tagline:"L'essence de la cuisine française au cœur de Hanoï",foot_review:"Laissez-nous un avis sur Google",
@@ -768,7 +923,7 @@ f_name:"Họ và Tên",f_phone:"Số Điện Thoại",f_email:"Email",f_guests:"
 f_seating:"Vị Trí Ưu Thích",f_purpose:"Dịp Đặc Biệt",
 seat_standard:"Sảnh tiệc tiêu chuẩn (Tầng 1)",seat_private:"Phòng riêng (Nếu còn trống, Tầng 2)",seat_window:"Phòng tiệc lớn (Tầng 3)",
 purp_dining:"Thưởng Thức Ẩm Thực",purp_business:"Tiếp Khách Quý & Đối Tác",purp_anniversary:"Kỷ Niệm / Sinh Nhật",purp_proposal:"Cầu Hôn 💍",
-d_veg:"Chay",d_vegan:"Thuần chay",d_gluten:"Không gluten",d_seafood:"Dị ứng hải sản",d_nut:"Dị ứng hạt",d_halal:"Halal",
+d_veg:"Chay",d_vegan:"Thuần chay",d_gluten:"Không gluten",d_seafood:"Dị ứng hải sản",d_nut:"Dị ứng hạt",d_halal:"Halal",d_select:"Chọn kiêng / dị ứng",
 guests_one:"khách",guests_many:"khách",guests_over:"Trên 20 — vui lòng gọi cho chúng tôi",time_lunch:"Buổi trưa",time_dinner:"Buổi tối",time_choose:"Chọn giờ",guests_choose:"Chọn số khách",
 i_address:"Địa Chỉ",i_contact:"Liên Hệ",i_hotline:"Hotline",i_tel:"ĐT bàn",i_mobile:"Di động",i_hours:"Giờ Mở Cửa",i_hours_text:"Hằng ngày: 10:00 – 22:00",
 foot_tagline:"Tinh hoa ẩm thực Pháp giữa lòng Hà Nội",foot_review:"Đánh giá chúng tôi trên Google",
@@ -806,7 +961,7 @@ f_name:"お名前",f_phone:"電話番号",f_email:"メール",f_guests:"人数",
 f_seating:"お席のご希望",f_purpose:"ご利用目的",
 seat_standard:"スタンダード一般ダイニング（1階）",seat_private:"個室VIPルーム（空室状況による、2階）",seat_window:"大型マルチファンクションルーム（3階）",
 purp_dining:"お食事の愉しみ",purp_business:"ご接待・ビジネス会食",purp_anniversary:"記念日・お誕生日のお祝い",purp_proposal:"プロポーズ 💍",
-d_veg:"ベジタリアン",d_vegan:"ヴィーガン",d_gluten:"グルテンフリー",d_seafood:"魚介アレルギー",d_nut:"ナッツアレルギー",d_halal:"ハラル",
+d_veg:"ベジタリアン",d_vegan:"ヴィーガン",d_gluten:"グルテンフリー",d_seafood:"魚介アレルギー",d_nut:"ナッツアレルギー",d_halal:"ハラル",d_select:"選択肢を選ぶ",
 guests_one:"名",guests_many:"名",guests_over:"20名以上 — お電話ください",time_lunch:"ランチ",time_dinner:"ディナー",time_choose:"時間を選択",guests_choose:"人数を選択",
 i_address:"住所",i_contact:"連絡先",i_hotline:"ホットライン",i_tel:"電話",i_mobile:"携帯",i_hours:"営業時間",i_hours_text:"毎日 10:00 – 22:00",
 foot_tagline:"ハノイの中心で味わうフランス料理 of フレンチ 真髄",foot_review:"Googleでレビューを残す",
@@ -833,11 +988,16 @@ function applyLang(lang){
   document.querySelectorAll(".lang-btn").forEach(b=>{
     b.classList.toggle("active", b.dataset.lang===lang);
   });
+  const activeBtnText = document.querySelector("#langActiveBtn .lang-text");
+  if(activeBtnText){
+    activeBtnText.textContent = lang === "ja" ? "日本語" : lang.toUpperCase();
+  }
   buildGuests(lang);
   buildTimes(lang, activeFullyBookedSlots);
   buildSeating(lang);
   buildPurpose(lang);
   buildWhatsApp(lang);
+  updateDietaryButtonText();
 }
 
 /* ===== BUILD WHATSAPP LINKS (pre-filled message per language) ===== */
@@ -1070,6 +1230,38 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
 /* ===== PRELOADER ===== */
 window.addEventListener("load", ()=>{ setTimeout(()=>document.getElementById("preloader").classList.add("hide"),500); });
+
+/* ===== PREMIUM DIETARY DROPDOWN LOGIC ===== */
+function updateDietaryButtonText() {
+  const btnText = document.getElementById("dietaryBtnText");
+  if (!btnText) return;
+  const checked = Array.from(document.querySelectorAll('input[name="dietary"]:checked'));
+  if (checked.length === 0) {
+    btnText.textContent = I18N[currentLang].d_select || "Select options";
+  } else {
+    const labels = checked.map(cb => {
+      const span = cb.nextElementSibling;
+      return span ? span.textContent : cb.value;
+    });
+    btnText.textContent = labels.join(", ");
+  }
+}
+document.querySelectorAll('input[name="dietary"]').forEach(cb => {
+  cb.addEventListener("change", updateDietaryButtonText);
+});
+const dBtn = document.getElementById("dietaryBtn");
+const dDropdown = document.querySelector(".dietary-dropdown");
+if (dBtn && dDropdown) {
+  dBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dDropdown.classList.toggle("open");
+  });
+  document.addEventListener("click", (e) => {
+    if (!dDropdown.contains(e.target)) {
+      dDropdown.classList.remove("open");
+    }
+  });
+}
 
 /* ===== INIT ===== */
 applyLang("en");
