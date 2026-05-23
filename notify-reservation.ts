@@ -424,9 +424,9 @@ function buildGuestHtml(r: any, lang: string, textConfig: any, seatingText: stri
   let bodyText = textConfig.body;
   if (r.status === "rescheduled" && r.reschedule_notes) {
     const noteHeading = lang === "vi" ? "Đề xuất đổi lịch từ Quản gia:"
-                     : lang === "fr" ? "Suggestion du Concierge:"
-                     : lang === "ja" ? "コンシェルジュからの提案内容:"
-                     : "Concierge Suggestion:";
+      : lang === "fr" ? "Suggestion du Concierge:"
+        : lang === "ja" ? "コンシェルジュからの提案内容:"
+          : "Concierge Suggestion:";
     bodyText += `<div style="margin-top:15px; padding:12px; border-left:3px solid #C5A55A; background-color:#181816; font-style:italic; color:#F5F0E8;">
       <strong>${noteHeading}</strong><br>${esc(r.reschedule_notes)}
     </div>`;
