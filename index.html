@@ -534,19 +534,64 @@ section{padding:4.5rem 1.3rem}
 
 <div class="res-grid reveal">
 <!-- FORM -->
-<!-- Five Star Restaurant Reservations Iframe Embed (Option 1) -->
-<div class="res-form-wrapper" style="border: 1px solid rgba(197, 165, 90, 0.35); padding: 1px; background: var(--dark-card); box-shadow: 0 10px 40px rgba(0,0,0,0.5); width: 100%; border-radius: 4px; overflow: hidden;">
-<!-- 
-   LƯU Ý: Để ẩn Header & Footer của WordPress trên Landing Page:
-   Hãy tạo một trang mới trên WordPress (ví dụ: https://www.maisonvie.vn/reservation-embed/) 
-   chỉ chứa shortcode [booking-form] và chọn Page Template là "Blank" hoặc "Canvas".
-   Sau đó thay link src bên dưới bằng đường dẫn trang mới đó để có giao diện gọn đẹp nhất.
--->
-<iframe src="https://www.maisonvie.vn/reservation/" 
-        style="width: 100%; height: 750px; border: none; background: transparent; display: block;" 
-        title="Maison Vie Booking Form"
-        id="resIframe"></iframe>
+<form class="res-form" id="resForm" autocomplete="on">
+<input type="text" class="honeypot" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+<div class="field-row">
+<div class="field">
+<label data-i18n="f_name">Full Name <span class="req">*</span></label>
+<input type="text" name="name" id="f_name" required>
 </div>
+<div class="field">
+<label data-i18n="f_phone">Phone <span class="req">*</span></label>
+<input type="tel" name="phone" id="f_phone" required>
+</div>
+</div>
+<div class="field">
+<label data-i18n="f_email">Email <span class="req">*</span></label>
+<input type="email" name="email" id="f_email" required>
+</div>
+<div class="field-row">
+<div class="field">
+<label data-i18n="f_guests">Guests <span class="req">*</span></label>
+<select name="guests" id="f_guests" required></select>
+</div>
+<div class="field">
+<label data-i18n="f_date">Date <span class="req">*</span></label>
+<input type="date" name="date" id="f_date" required>
+</div>
+</div>
+<div class="field-row">
+<div class="field">
+<label data-i18n="f_time">Time <span class="req">*</span></label>
+<select name="time" id="f_time" required></select>
+</div>
+<div class="field">
+<label data-i18n="f_seating">Seating Preference</label>
+<select name="seating_preference" id="f_seating"></select>
+</div>
+</div>
+<div class="field">
+<label data-i18n="f_purpose">Special Occasion</label>
+<select name="purpose" id="f_purpose"></select>
+</div>
+<div class="field">
+<label data-i18n="f_dietary">Dietary / Allergies</label>
+<div class="dietary-grid">
+<label class="diet-check"><input type="checkbox" name="dietary" value="vegetarian"><span data-i18n="d_veg">Vegetarian</span></label>
+<label class="diet-check"><input type="checkbox" name="dietary" value="vegan"><span data-i18n="d_vegan">Vegan</span></label>
+<label class="diet-check"><input type="checkbox" name="dietary" value="gluten_free"><span data-i18n="d_gluten">Gluten-free</span></label>
+<label class="diet-check"><input type="checkbox" name="dietary" value="seafood_allergy"><span data-i18n="d_seafood">Seafood allergy</span></label>
+<label class="diet-check"><input type="checkbox" name="dietary" value="nut_allergy"><span data-i18n="d_nut">Nut allergy</span></label>
+<label class="diet-check"><input type="checkbox" name="dietary" value="halal"><span data-i18n="d_halal">Halal</span></label>
+</div>
+</div>
+<div class="field">
+<label data-i18n="f_notes">Additional Requests</label>
+<textarea name="notes" id="f_notes" rows="3"></textarea>
+</div>
+<button type="submit" class="res-submit" id="resSubmit" data-i18n="f_submit">Request Booking</button>
+<div class="form-msg" id="formMsg"></div>
+</form>
 
 <!-- INFO + MAP -->
 <div class="res-info">
@@ -808,9 +853,7 @@ function buildWhatsApp(lang){
 
 /* ===== BUILD GUESTS DROPDOWN (1–20) ===== */
 function buildGuests(lang){
-  const sel = document.getElementById("f_guests");
-  if(!sel) return;
-  const t = I18N[lang];
+  const t = I18N[lang], sel = document.getElementById("f_guests");
   const prev = sel.value;
   sel.innerHTML = `<option value="" disabled selected>${t.guests_choose}</option>`;
   for(let i=1;i<=20;i++){
@@ -823,9 +866,7 @@ function buildGuests(lang){
 
 /* ===== BUILD TIME DROPDOWN (10:00–22:00 WITH CAPACITY AUTO-BLOCKING) ===== */
 function buildTimes(lang, fullyBookedSlots = []){
-  const sel = document.getElementById("f_time");
-  if(!sel) return;
-  const t = I18N[lang];
+  const t = I18N[lang], sel = document.getElementById("f_time");
   const prev = sel.value;
   sel.innerHTML = `<option value="" disabled selected>${t.time_choose}</option>`;
   
@@ -861,9 +902,7 @@ function buildTimes(lang, fullyBookedSlots = []){
 
 /* ===== BUILD SEATING DROPDOWN ===== */
 function buildSeating(lang){
-  const sel = document.getElementById("f_seating");
-  if(!sel) return;
-  const t = I18N[lang];
+  const t = I18N[lang], sel = document.getElementById("f_seating");
   const prev = sel.value;
   sel.innerHTML = `
     <option value="standard" ${!prev ? 'selected' : ''}>${t.seat_standard}</option>
@@ -875,9 +914,7 @@ function buildSeating(lang){
 
 /* ===== BUILD PURPOSE DROPDOWN ===== */
 function buildPurpose(lang){
-  const sel = document.getElementById("f_purpose");
-  if(!sel) return;
-  const t = I18N[lang];
+  const t = I18N[lang], sel = document.getElementById("f_purpose");
   const prev = sel.value;
   sel.innerHTML = `
     <option value="fine_dining" ${!prev ? 'selected' : ''}>${t.purp_dining}</option>
@@ -897,88 +934,82 @@ if(SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase){
 
 /* ===== SUCCESS MODAL TRIGGERS ===== */
 const sm = document.getElementById("successModal");
-const openSuccessModal = () => sm && sm.classList.add("open");
-const closeSuccessModal = () => sm && sm.classList.remove("open");
-const mc = document.getElementById("modalClose");
-if(mc) mc.addEventListener("click", closeSuccessModal);
-if(sm) {
-  sm.addEventListener("click", (e) => {
-    if (e.target === sm) closeSuccessModal();
-  });
-}
+const openSuccessModal = () => sm.classList.add("open");
+const closeSuccessModal = () => sm.classList.remove("open");
+document.getElementById("modalClose").addEventListener("click", closeSuccessModal);
+sm.addEventListener("click", (e) => {
+  if (e.target === sm) closeSuccessModal();
+});
 
 /* ===== FORM SUBMIT ===== */
-const resFormEl = document.getElementById("resForm");
-if(resFormEl) {
-  resFormEl.addEventListener("submit", async (e)=>{
-    e.preventDefault();
-    const t = I18N[currentLang];
-    const msg = document.getElementById("formMsg");
-    const btn = document.getElementById("resSubmit");
-    msg.className = "form-msg";
+document.getElementById("resForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const t = I18N[currentLang];
+  const msg = document.getElementById("formMsg");
+  const btn = document.getElementById("resSubmit");
+  msg.className = "form-msg";
 
-    // Honeypot — silent bot trap
-    if(e.target.company.value){ return; }
+  // Honeypot — silent bot trap
+  if(e.target.company.value){ return; }
 
-    const email = document.getElementById("f_email").value.trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-      msg.className="form-msg error"; msg.textContent=t.msg_invalid_email; 
+  const email = document.getElementById("f_email").value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    msg.className="form-msg error"; msg.textContent=t.msg_invalid_email; 
+    msg.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
+  const dateVal = document.getElementById("f_date").value;
+  if(dateVal && new Date(dateVal) < new Date(new Date().toDateString())){
+    msg.className="form-msg error"; msg.textContent=t.msg_past; 
+    msg.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
+
+  const dietary = Array.from(document.querySelectorAll('input[name="dietary"]:checked')).map(c=>c.value);
+  const payload = {
+    name: document.getElementById("f_name").value.trim(),
+    email: email,
+    phone: document.getElementById("f_phone").value.trim(),
+    guests: parseInt(document.getElementById("f_guests").value) || 21,
+    res_date: dateVal,
+    res_time: document.getElementById("f_time").value,
+    seating_preference: document.getElementById("f_seating").value,
+    purpose: document.getElementById("f_purpose").value,
+    dietary: dietary,
+    notes: document.getElementById("f_notes").value.trim(),
+    language: currentLang
+  };
+
+  btn.disabled = true; btn.textContent = t.msg_sending;
+
+  try{
+    if(sb){
+      const { error } = await sb.from("reservations").insert([payload]);
+      if(error) throw error;
+      
+      openSuccessModal();
+      e.target.reset(); 
+      activeFullyBookedSlots = [];
+      buildGuests(currentLang); 
+      buildTimes(currentLang, activeFullyBookedSlots);
+      buildSeating(currentLang);
+      buildPurpose(currentLang);
+    } else {
+      // DEMO MODE — no Supabase keys yet
+      await new Promise(r=>setTimeout(r,700));
+      msg.className="form-msg success"; msg.textContent=t.msg_demo;
       msg.scrollIntoView({behavior:"smooth",block:"center"});
-      return;
+      console.log("[DEMO] Reservation payload:", payload);
+      openSuccessModal();
     }
-    const dateVal = document.getElementById("f_date").value;
-    if(dateVal && new Date(dateVal) < new Date(new Date().toDateString())){
-      msg.className="form-msg error"; msg.textContent=t.msg_past; 
-      msg.scrollIntoView({behavior:"smooth",block:"center"});
-      return;
-    }
-
-    const dietary = Array.from(document.querySelectorAll('input[name="dietary"]:checked')).map(c=>c.value);
-    const payload = {
-      name: document.getElementById("f_name").value.trim(),
-      email: email,
-      phone: document.getElementById("f_phone").value.trim(),
-      guests: parseInt(document.getElementById("f_guests").value) || 21,
-      res_date: dateVal,
-      res_time: document.getElementById("f_time").value,
-      seating_preference: document.getElementById("f_seating").value,
-      purpose: document.getElementById("f_purpose").value,
-      dietary: dietary,
-      notes: document.getElementById("f_notes").value.trim(),
-      language: currentLang
-    };
-
-    btn.disabled = true; btn.textContent = t.msg_sending;
-
-    try{
-      if(sb){
-        const { error } = await sb.from("reservations").insert([payload]);
-        if(error) throw error;
-        
-        openSuccessModal();
-        e.target.reset(); 
-        activeFullyBookedSlots = [];
-        buildGuests(currentLang); 
-        buildTimes(currentLang, activeFullyBookedSlots);
-        buildSeating(currentLang);
-        buildPurpose(currentLang);
-      } else {
-        // DEMO MODE — no Supabase keys yet
-        await new Promise(r=>setTimeout(r,700));
-        msg.className="form-msg success"; msg.textContent=t.msg_demo;
-        msg.scrollIntoView({behavior:"smooth",block:"center"});
-        console.log("[DEMO] Reservation payload:", payload);
-        openSuccessModal();
-      }
-    }catch(err){
-      console.error(err);
-      msg.className="form-msg error"; msg.textContent=t.msg_error;
-      msg.scrollIntoView({behavior:"smooth",block:"center"});
-    }finally{
-      btn.disabled=false; btn.textContent=I18N[currentLang].f_submit;
-    }
-  });
-}
+  }catch(err){
+    console.error(err);
+    msg.className="form-msg error"; msg.textContent=t.msg_error;
+    msg.scrollIntoView({behavior:"smooth",block:"center"});
+  }finally{
+    btn.disabled=false; btn.textContent=I18N[currentLang].f_submit;
+  }
+});
 
 /* ===== LANG BUTTONS ===== */
 document.querySelectorAll(".lang-btn").forEach(b=>{
@@ -987,36 +1018,34 @@ document.querySelectorAll(".lang-btn").forEach(b=>{
 
 /* ===== DATE MIN = TODAY & CAPACITY AUTO-BLOCKING ===== */
 const dateInput = document.getElementById("f_date");
-if(dateInput) {
-  dateInput.min = new Date().toISOString().split("T")[0];
+dateInput.min = new Date().toISOString().split("T")[0];
 
-  dateInput.addEventListener("change", async () => {
-    const dateVal = dateInput.value;
-    if (!dateVal) return;
-    
-    let fullyBookedSlots = [];
-    if (sb) {
-      try {
-        // Dynamic Check using the custom Supabase Postgres RPC function
-        const { data, error } = await sb.rpc('check_slot_capacity', { target_date: dateVal });
-        if (!error && data) {
-          // Threshold: 15 guests maximum per hour slot across active reservations
-          const CAPACITY_LIMIT = 15;
-          data.forEach(slot => {
-            if (parseInt(slot.total_guests) >= CAPACITY_LIMIT) {
-              fullyBookedSlots.push(slot.res_time);
-            }
-          });
-        }
-      } catch(err) {
-        console.error("Auto-blocking capacity engine error:", err);
+dateInput.addEventListener("change", async () => {
+  const dateVal = dateInput.value;
+  if (!dateVal) return;
+  
+  let fullyBookedSlots = [];
+  if (sb) {
+    try {
+      // Dynamic Check using the custom Supabase Postgres RPC function
+      const { data, error } = await sb.rpc('check_slot_capacity', { target_date: dateVal });
+      if (!error && data) {
+        // Threshold: 15 guests maximum per hour slot across active reservations
+        const CAPACITY_LIMIT = 15;
+        data.forEach(slot => {
+          if (parseInt(slot.total_guests) >= CAPACITY_LIMIT) {
+            fullyBookedSlots.push(slot.res_time);
+          }
+        });
       }
+    } catch(err) {
+      console.error("Auto-blocking capacity engine error:", err);
     }
-    
-    activeFullyBookedSlots = fullyBookedSlots;
-    buildTimes(currentLang, activeFullyBookedSlots);
-  });
-}
+  }
+  
+  activeFullyBookedSlots = fullyBookedSlots;
+  buildTimes(currentLang, activeFullyBookedSlots);
+});
 
 /* ===== NAV SCROLL ===== */
 window.addEventListener("scroll", ()=>{
