@@ -121,8 +121,35 @@ You need to schedule an hourly trigger that pings your function's URL with the a
 3. Upload `index.html` and `dashboard.html` directly to the repository.
 4. Log into [vercel.com](https://vercel.com) ➔ **Add New Project** ➔ Import the GitHub repository and click **Deploy**.
 5. Live endpoints:
-   * Public Webpage: `https://your-domain.vercel.app/`
-   * CRM Dashboard: `https://your-domain.vercel.app/dashboard.html`
+   * Public Webpage: `https://msv.maisonvie.vn` (Custom domain)
+   * Vercel Project URL: `https://msv-dl8p5edat-maisonvieproject.vercel.app`
+   * CRM Dashboard: `https://msv.maisonvie.vn/dashboard.html`
+
+---
+
+## 🛠️ ACTUAL PRODUCTION DEPLOYMENT & SYNC INFO
+
+This project is configured with a dedicated GitHub remote and a manual Vercel CLI link. To sync and publish changes correctly, use the following procedures:
+
+### A. Syncing with GitHub
+The codebase is pushed to the official repository. Run:
+```bash
+git add .
+git commit -m "feat: upgrade language selector & dietary menu to hover dropdown, remove 2-star Michelin rating"
+git push origin main
+```
+*   **Remote Origin**: `https://github.com/maisonvie-vn/maison-vie-crm.git`
+*   **Active Branch**: `main`
+
+### B. Deploying to Vercel (Production)
+Since the project relies on direct CLI publishing, **do not** use specific preview hashed URLs (which are frozen). Deploy straight to production using:
+```bash
+npx vercel --prod --yes
+```
+*   **Vercel Org/Team**: `team_ZBCK67XZl9ZKR10KdbpWDzCM` (maisonvieproject)
+*   **Vercel Project ID**: `prj_8A7jCu8x4rHpDV0s6GwP32R1Ipd1`
+*   **Vercel Project Name**: `msv`
+*   **Custom Domain**: `https://msv.maisonvie.vn`
 
 ---
 
